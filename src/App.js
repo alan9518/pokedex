@@ -1,6 +1,15 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+/* ==========================================================================
+** Main App Component
+** 13/04/2019
+** Alan Medina Silva
+** ========================================================================== */
+
+// --------------------------------------
+// Imports
+// --------------------------------------
+  import React, { Component } from 'react';
+  import logo from './img/logo-pokemon.png'
+  import './App.css';
 
 class App extends Component {
   render() {
