@@ -1,6 +1,5 @@
 /* ==========================================================================
-** Main Page View
-** Design App Layout
+** Pokemon Details Component
 ** 13/04/2019
 ** Alan Medina Silva
 ** ========================================================================== */
@@ -9,20 +8,18 @@
 // Get Dependences
 // --------------------------------------
     import React, { Component, Fragment } from 'react';
-    import logo from '../../img/logo-pokemon.png';
-    import { Header } from '../../layouts';
-    import { CardContainer } from '../../components';
-    import DetailsView from '../Details/DetailsView';
+    import {Pokeball} from '../../components';
     import PropTypes from 'prop-types';
-    
 
 // --------------------------------------
 // Create Component Class
 // --------------------------------------
-    class HomeView extends Component {
+    class DetailsView extends Component {
+
         /* ==========================================================================
         ** Component Setup
         ** ========================================================================== */
+
             // --------------------------------------
             // Constructor
             // --------------------------------------
@@ -32,74 +29,61 @@
                     isLoaded: false,
                 }
             }
+
+
             // --------------------------------------
             // Set Initial Values
             // --------------------------------------
             componentDidMount() {
             }
-
-
         /* ==========================================================================
         ** Render Methods
         ** ========================================================================== */
 
+           /** --------------------------------------
+            * Render Pokemon Details
+           // @param {pokemon <Obect>}
+           
+           // -------------------------------------- */
+
+
 
             // --------------------------------------
-            // Render Grid Layuot
-            // 1/3 Details View
-            // 2/3 List View
+            // Render No Pokemon Selected Message
             // --------------------------------------
-            renderGridLayout() {
-               
-                return (
-                    <div className="bootstrap-wrapper">
-                        <div className="container-fluid">
-                            <div className="row">
-                            <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <CardContainer>  
-                                    <DetailsView/>
-                                </CardContainer>
-                            </div>
-                            <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                <CardContainer> 1  </CardContainer>
-                            </div>
-                            
-                            </div>
-                           
-                           
-                        </div>
-                        </div>
-                )
+            renderNoPokemonSelected() {
+
+                return ( <Pokeball/>  )
+
             }
 
-
             // --------------------------------------
-            // Render Main View
+            // Render Projects
             // --------------------------------------
-            renderHomeView() {
+            renderDetailsView() {
                 return (
-                    <Fragment>
-                      <Header appLogo = {logo}/>
-                      <div className="px-pokedexContainer">
-                        {this.renderGridLayout()}
-                      </div>
+                    <Fragment> 
+                        {this.renderNoPokemonSelected()}
                     </Fragment>
                 )
             }
+
+
             // --------------------------------------
             // Render Component
             // --------------------------------------
             render() {
-                return this.renderHomeView();
+                return this.renderDetailsView();
             }
     }
+
 // -------------------------------------- 
 // Define PropTypes 
 // -------------------------------------- 
-HomeView.propTypes = {
-    props: PropTypes
-};
+    DetailsView.propTypes = {
+        props: PropTypes
+    };
 // --------------------------------------
 // Export Component
 // --------------------------------------
-export default HomeView;
+    export default DetailsView;

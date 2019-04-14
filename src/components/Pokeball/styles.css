@@ -1,17 +1,23 @@
 /* ==========================================================================
-** Header Styles
+** Pokeball Layout Styles
 ** 13/04/2019
 ** Alan Medina Silva
 ** ========================================================================== */
 
-.px-header {
+.px-pokeballContainer {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.px-header .App-logo {
-    width: 250px;
+.px-pokeballContainer h2 {
+    margin-bottom: 25px;
+}
+
+.px-pokeballContainer img {
+    width: 300px;
+    height: auto;
 }

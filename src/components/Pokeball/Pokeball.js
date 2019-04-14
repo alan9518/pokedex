@@ -1,5 +1,5 @@
 /* ==========================================================================
-** Header Layout Component
+** No Pokemon Selected Layout Component
 ** 13/04/2019
 ** Alan Medina Silva
 ** ========================================================================== */
@@ -8,33 +8,33 @@
 // Get Dependences
 // --------------------------------------
     import React from 'react';
+    import PokeballImage from '../../img/pokeball.png'
     import PropTypes from 'prop-types';
     import './styles.css';
+
 
 // --------------------------------------
 // Create Functional Component
 // --------------------------------------
-    const Header = (props) => {
-        const {appLogo} =  props
- 
-
-        return(
-            
-            <header className="px-header">
-                <img src={appLogo} className="App-logo" alt="Pokémon" />      
-            </header>
-             
+    const Pokeball = (props) => {
+        return (
+            <div className = "px-pokeballContainer">
+                <h2> Empty State </h2>
+                <img src = {PokeballImage} alt=""/>
+            </div>
         )
     }
+
 
 // -------------------------------------- 
 // Define PropTypes 
 // -------------------------------------- 
-    Header.propTypes = {
-        appLogo : PropTypes.string
+    Pokeball.propTypes = {
+        props: PropTypes
     };
+
 
 // --------------------------------------
 // Export Component
 // --------------------------------------
-    export default Header;
+    export default Pokeball;

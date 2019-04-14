@@ -1,5 +1,5 @@
 /* ==========================================================================
-** Header Layout Component
+** Pokemon Details Card Layout Component
 ** 13/04/2019
 ** Alan Medina Silva
 ** ========================================================================== */
@@ -9,32 +9,27 @@
 // --------------------------------------
     import React from 'react';
     import PropTypes from 'prop-types';
-    import './styles.css';
-
+    
 // --------------------------------------
 // Create Functional Component
 // --------------------------------------
-    const Header = (props) => {
-        const {appLogo} =  props
- 
-
-        return(
-            
-            <header className="px-header">
-                <img src={appLogo} className="App-logo" alt="Pokémon" />      
-            </header>
-             
+    const PokemonDetails = (props) => {
+        return (
+            <div >
+            </div>
         )
     }
+
 
 // -------------------------------------- 
 // Define PropTypes 
 // -------------------------------------- 
-    Header.propTypes = {
-        appLogo : PropTypes.string
+    PokemonDetails.propTypes = {
+        props: PropTypes
     };
+
 
 // --------------------------------------
 // Export Component
 // --------------------------------------
-    export default Header;
+    export default PokemonDetails;
