@@ -8,7 +8,7 @@
 // Get Dependences
 // --------------------------------------
     import React, { Component, Fragment } from 'react';
-    import {Pokeball} from '../../components';
+    import {PokemonDetails,PokemonProfile ,Pokeball} from '../../components';
     import PropTypes from 'prop-types';
 
 // --------------------------------------
@@ -43,8 +43,15 @@
            /** --------------------------------------
             * Render Pokemon Details
            // @param {pokemon <Obect>}
-           
            // -------------------------------------- */
+           renderPokemonDetails() {
+               return (
+                    <Fragment> 
+                        <PokemonDetails/>
+                        <PokemonProfile/>
+                    </Fragment>
+               )
+           }
 
 
 
@@ -61,11 +68,7 @@
             // Render Projects
             // --------------------------------------
             renderDetailsView() {
-                return (
-                    <Fragment> 
-                        {this.renderNoPokemonSelected()}
-                    </Fragment>
-                )
+                return ( this.renderPokemonDetails() )
             }
 
 

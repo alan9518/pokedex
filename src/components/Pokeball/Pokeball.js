@@ -18,9 +18,9 @@
 // --------------------------------------
     const Pokeball = (props) => {
         return (
-            <div className = "px-pokeballContainer">
+            <div className = "px-cardContent">
                 <h2> Empty State </h2>
-                <img src = {PokeballImage} alt=""/>
+                <img src = {PokeballImage} alt="No pokemon Selected" className = "px-cardContentImage" />
             </div>
         )
     }

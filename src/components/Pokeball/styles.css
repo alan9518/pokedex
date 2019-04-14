@@ -4,20 +4,12 @@
 ** Alan Medina Silva
 ** ========================================================================== */
 
-.px-pokeballContainer {
-    width: 100%;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-}
 
-.px-pokeballContainer h2 {
+.px-cardContent h2 {
     margin-bottom: 25px;
 }
 
-.px-pokeballContainer img {
+.px-cardContentImage  {
     width: 300px;
     height: auto;
 }

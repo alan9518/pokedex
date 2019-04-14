@@ -1,0 +1,24 @@
+/* ==========================================================================
+** MiniPokemon Grid Item Styles
+** 14/04/2019
+** Alan Medina Silva
+** ========================================================================== */
+
+.px-idContainer {
+    background-color: #ef9809;
+    text-align: center;
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+p.px-greyTitle.px-miniPokemonTitle {
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+p.px-greyText.px-miniPokemonType {
+    font-size: 1.2em;
+    font-weight: 400;
+}

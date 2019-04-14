@@ -1,0 +1,58 @@
+/* ==========================================================================
+** Pokemon Details Styles
+** 13/04/2019
+** Alan Medina Silva
+** ========================================================================== */
+
+.px-pokemonImageContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+.px-pokemonDetailsContainer {
+    width: 100%;
+    border-bottom: 2px solid #e2e2e2;
+}
+
+.px-pokemonTitle {
+    text-align: center;
+}
+
+.px-pokemonProfileContainer {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.px-profileItem {
+  
+    width: 100%;
+    padding: 5px;
+    text-align: left;
+    align-items: center;
+    
+}
+
+.px-pokemonImage {
+    width: 200px;
+    height: auto;
+}
+
+.px-pokemonStatsContainer {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-align-items: left;
+    align-items: left;
+    -webkit-justify-content: space-around;
+    height: 100%;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.px-pokemonStatsContainer  ul {
+    list-style: none;
+}

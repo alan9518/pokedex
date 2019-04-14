@@ -11,9 +11,11 @@
   box-sizing: border-box;
 }
 
+html, body { height: 100%; }
+
 body {
   background-color: #f7f7f7;
-  font-family: 'Roboto', sans-serif;
+  
 }
 
 .App {
@@ -23,4 +25,35 @@ body {
 .px-pokedexContainer {
   width: 100%;
   padding: 12px 25px;
+}
+
+.px-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Roboto', sans-serif;
+}
+
+p {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.px-greyTitle {
+  color: #4a4a4a;
+}
+
+.px-greyText {
+  color: #9c9797;
+  /* font-weight: 300; */
+}
+
+.px-responsiveRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

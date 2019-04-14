@@ -11,7 +11,7 @@
     import React, { Component, Fragment } from 'react';
     import logo from '../../img/logo-pokemon.png';
     import { Header } from '../../layouts';
-    import { CardContainer } from '../../components';
+    import { CardContainer, MiniPokemon } from '../../components';
     import DetailsView from '../Details/DetailsView';
     import PropTypes from 'prop-types';
     
@@ -61,7 +61,21 @@
                                 </CardContainer>
                             </div>
                             <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                <CardContainer> 1  </CardContainer>
+                                <CardContainer> 
+                                    <div className="row">
+                                        <div className="col-md-3"> <MiniPokemon/> </div>
+                                        <div className="col-md-3"> <MiniPokemon/> </div>
+                                        <div className="col-md-3"> <MiniPokemon/> </div>
+                                        <div className="col-md-3"> <MiniPokemon/> </div>
+                                    </div>
+
+                                    <div className="row">
+                                        <div className="col-md-3"> <MiniPokemon/> </div>
+                                        <div className="col-md-3"> <MiniPokemon/> </div>
+                                        <div className="col-md-3"> <MiniPokemon/> </div>
+                                        <div className="col-md-3"> <MiniPokemon/> </div>
+                                    </div>
+                                </CardContainer>
                             </div>
                             
                             </div>
