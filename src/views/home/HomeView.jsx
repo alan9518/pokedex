@@ -11,7 +11,7 @@
     import React, { Component, Fragment } from 'react';
     import logo from '../../img/logo-pokemon.png';
     import { Header } from '../../layouts';
-    import { CardContainer, MiniPokemon } from '../../components';
+    import { CardContainer, MiniPokemon, SearchBar, Pagination } from '../../components';
     import DetailsView from '../Details/DetailsView';
     import PropTypes from 'prop-types';
     
@@ -32,6 +32,7 @@
                     isLoaded: false,
                 }
             }
+
             // --------------------------------------
             // Set Initial Values
             // --------------------------------------
@@ -55,34 +56,48 @@
                     <div className="bootstrap-wrapper">
                         <div className="container-fluid">
                             <div className="row">
-                            <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <CardContainer>  
-                                    <DetailsView/>
-                                </CardContainer>
-                            </div>
-                            <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                <CardContainer> 
-                                    <div className="row">
-                                        <div className="col-md-3"> <MiniPokemon/> </div>
-                                        <div className="col-md-3"> <MiniPokemon/> </div>
-                                        <div className="col-md-3"> <MiniPokemon/> </div>
-                                        <div className="col-md-3"> <MiniPokemon/> </div>
-                                    </div>
+                                <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <CardContainer>  
+                                        <DetailsView/>
+                                    </CardContainer>
+                                </div>
+                                <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 
-                                    <div className="row">
-                                        <div className="col-md-3"> <MiniPokemon/> </div>
-                                        <div className="col-md-3"> <MiniPokemon/> </div>
-                                        <div className="col-md-3"> <MiniPokemon/> </div>
-                                        <div className="col-md-3"> <MiniPokemon/> </div>
-                                    </div>
-                                </CardContainer>
-                            </div>
-                            
-                            </div>
-                           
-                           
+                                <CardContainer>   <SearchBar/> </CardContainer>
+
+                                    <CardContainer> 
+                                        <div className="row">
+                                            <div className="col-md-3"> <MiniPokemon/> </div>
+                                            <div className="col-md-3"> <MiniPokemon/> </div>
+                                            <div className="col-md-3"> <MiniPokemon/> </div>
+                                            <div className="col-md-3"> <MiniPokemon/> </div>
+                                        </div>
+
+                                        <div className="row">
+                                            <div className="col-md-3"> <MiniPokemon/> </div>
+                                            <div className="col-md-3"> <MiniPokemon/> </div>
+                                            <div className="col-md-3"> <MiniPokemon/> </div>
+                                            <div className="col-md-3"> <MiniPokemon/> </div>
+                                        </div>
+                                    </CardContainer>
+
+
+                                    {this.renderPagination()}
+                                </div>
+                                
+                            </div>    
                         </div>
-                        </div>
+                    </div>
+                )
+            }
+
+
+            renderPagination() {
+                // return <CardContainer>    <Pagination currentPage = {currentPage} dataCount = {anunciosCount} onItemClick = {this.onPageitemCick} itemsPerPage = {itemsPerPage}/> </CardContainer>
+                return (
+                    <CardContainer medium = {true}>    
+                        <Pagination currentPage = {1} dataCount = {50} onItemClick = {(e)=> console.log(e)} itemsPerPage = {12}/> 
+                    </CardContainer>
                 )
             }
 

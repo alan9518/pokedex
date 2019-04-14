@@ -36,41 +36,41 @@
                     <div className="col-md-7">
                         <div className="px-pokemonStatsContainer">
                             <ul>
-                                    <li className = "px-pokemonStat">
+                                    <li className = "px-responsiveRow px-pokemonStat">
                                         <div className="px-profileItem">
                                             <h4 className="px-label"> HP </h4>
                                             <ProgressBar statValue = {50}/>
                                         </div>       
                                     </li>
-                                    <li className = "px-pokemonStat">
+                                    <li className = "px-responsiveRow px-pokemonStat">
                                         <div className="px-profileItem">
                                             <h4 className="px-label"> Attack </h4>
                                             <ProgressBar statValue = {27}/>
                                         </div>       
                                     </li>
 
-                                    <li className = "px-pokemonStat">
+                                    <li className = "px-responsiveRow px-pokemonStat">
                                         <div className="px-profileItem">
                                             <h4 className="px-label"> Defense </h4>
                                             <ProgressBar statValue = {47}/>
                                         </div>       
                                     </li>
 
-                                    <li className = "px-pokemonStat">
+                                    <li className = "px-responsiveRow px-pokemonStat">
                                         <div className="px-profileItem">
                                             <h4 className="px-label"> Speed </h4>
                                             <ProgressBar statValue = {87}/>
                                         </div>       
                                     </li>
 
-                                    <li className = "px-pokemonStat">
+                                    <li className = "px-responsiveRow px-pokemonStat">
                                         <div className="px-profileItem">
                                             <h4 className="px-label"> Sp Atk </h4>
                                             <ProgressBar statValue = {32}/>
                                         </div>       
                                     </li>
 
-                                    <li className = "px-pokemonStat">
+                                    <li className = "px-responsiveRow px-pokemonStat">
                                         <div className="px-profileItem">
                                             <h4 className="px-label"> Sp Def </h4>
                                             <ProgressBar statValue = {60}/>

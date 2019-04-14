@@ -1,0 +1,36 @@
+/* ==========================================================================
+** Pagination & Pagination Items Styles
+** 14/04/2019
+** Alan Medina Silva
+** ========================================================================== */
+
+
+ul.px-pagination {
+    /* display: flex;
+    flex-direction: row;
+    align-items: center; */
+    justify-content: center;
+
+    list-style: none;
+}
+
+button.px-paginationButton {
+    background-color: transparent;
+    border: none;
+    color: #4a4a4a;
+    padding: 8px 14px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+button.px-paginationButton:hover {
+    background-color: #ef9809;
+    color: #ffffff;
+}   
+
+
+
+button.px-paginationButton.px-active {
+    background-color: #ef9809;
+    color: #ffffff;
+}

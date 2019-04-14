@@ -14,6 +14,9 @@
     import PokemonProfile from './pokemon/PokemonProfile';
     import MiniPokemon from './miniPokemon/MiniPokemon';
     import ProgressBar from './progress/ProgressBar';
+    import SearchBar from './search/SearchBar';
+    import Pagination from './Pagination/Pagination';
+    import PaginationItem from './Pagination/PaginationItem'
 
 // --------------------------------------
 // Export Components
@@ -24,5 +27,8 @@
         PokemonDetails,
         PokemonProfile,
         ProgressBar,
-        MiniPokemon
+        MiniPokemon,
+        SearchBar,
+        Pagination,
+        PaginationItem,
     }

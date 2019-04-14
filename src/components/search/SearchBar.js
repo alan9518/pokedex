@@ -7,8 +7,9 @@
 // --------------------------------------
 // Get Dependences
 // --------------------------------------
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
+    import React, { Component, Fragment } from 'react';
+    import PropTypes from 'prop-types';
+    import './styles.css';
 // --------------------------------------
 // Create Component Class
 // --------------------------------------
@@ -44,9 +45,9 @@ class SearchBar extends Component {
                 <Fragment>
 
                     <form class="px-searchContainer">
+                        <img className="px-searchIcon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"/>
+                        <input type="text" id="px-searchBar" placeholder="Search Pokemon"/>
                         
-                        <input type="text" id="search-bar" placeholder="What can I help you with today?"/>
-                        <a href="#"><img class="px-searchIcon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"/></a>
                     </form>
                 </Fragment>
             )
