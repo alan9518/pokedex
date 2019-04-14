@@ -1,6 +1,15 @@
 /* ==========================================================================
-** Main Page View
-** Design App Layout
+** Header Styles
 ** 13/04/2019
 ** Alan Medina Silva
 ** ========================================================================== */
+
+.px-header {
+    width: 100%;
+    padding: 10px;
+}
+
+.px-header .App-logo {
+    width: 100px;
+    height: auto;
+}   
