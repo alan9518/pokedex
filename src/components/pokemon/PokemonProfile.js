@@ -16,7 +16,7 @@
 // --------------------------------------
     const PokemonProfile = (props) => {
 
-        const {pokemonAbilities, weight, height, pokemonSpecie } = props;
+        const {pokemonAbilities, weight, height, pokemonSpecie, pokemonStats } = props;
         const {capture_rate, hatch_counter, egg_groups, gender_rate} = pokemonSpecie;
 		console.log("TCL: PokemonProfile -> pokemonAbilities", pokemonAbilities)
 
@@ -32,7 +32,7 @@
                     <div className="col-md-6 col-sm-12 col-xs-12">
                         <PokemonProfileItem label = {'Height'} value = {`${convertFeetToMeters(height)}mts`}  />
 
-                        <PokemonProfileItem label = {'Catch Rate'} value = {`${capture_rate}%`}  />
+                        <PokemonProfileItem label = {'Catch Rate'} value = {`${setCatchRate(capture_rate)}%`}  />
 
                         <PokemonProfileItem label = {'Egg Group'} value = {splitArrayDataByName(egg_groups)}  />
                         
@@ -47,16 +47,11 @@
                     <div className="col-md-6 col-sm-12 col-xs-12">
                     
                         <PokemonProfileItem label = {'Weight'} value = {`${convertPoundsToKg(weight)}kg`}  />
-
-
                         <PokemonGender gender_ratio = {gender_rate}/>
-
                         <PokemonProfileItem label = {'Hatch Steps'} value = {setStepsToHatchEgg(hatch_counter)}  />
+                        <PokemonProfileItem label = {'Evs'} value = {setPokemonEvs(pokemonStats)}  />
 
-                        <div className = "px-responsiveRow px-profileItem px-profileItemDetails">
-                            <h5 className="px-label"> EVs </h5>
-                            <span> 1 Sp Att </span>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -76,6 +71,16 @@
     // Pounds to Kg
     const convertPoundsToKg = (weightOnPounds) => {
         return (weightOnPounds/2.2046).toFixed(2);
+    }
+
+
+    // --------------------------------------
+    // Set Catch Rate
+    // The base capture rate; up to 255
+    // --------------------------------------
+    
+    const setCatchRate = (catch_ratio) => {
+        return Math.round((100 / 255) * catch_ratio);
     }
 
     // Split Array Data into single String
@@ -107,8 +112,26 @@
 
 
     // --------------------------------------
-    // Set Pokemon Gender Ratio
+    // Set Pokemon Evs
     // --------------------------------------
+    const setPokemonEvs = (stats) => {
+        
+        // Filter Special Abilities
+        const nStats = stats.filter(stat => {if (stat.effort > 0) {return true;}return false;})
+     
+        // Split the Values, remove - && add ,   
+        return nStats.map((stat)=> {
+              return `${stat.effort} ${stat.stat.name
+                        .toLowerCase()
+                        .split('-')
+                        .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+                        .join(' ')}`;
+            
+        }).join(', ');
+       
+    }
+
+    
 
 
 // -------------------------------------- 

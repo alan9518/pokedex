@@ -19,7 +19,7 @@
         const {mediumCard, fixedCard, children} = props;
         const cardClass = mediumCard === true ? 'px-cardContainer px-mediumCard' : 'px-cardContainer';
         const fixedStyles = fixedCard && {
-            position : 'fixed', left : '10px', width : '33%'
+            position : 'fixed', left : '10px', width : '33%', minHeight:'550px'
         }
         return (
             <div className = {cardClass} style = {fixedStyles}> 
@@ -36,7 +36,9 @@
 // Define PropTypes 
 // -------------------------------------- 
     CardContainer.propTypes = {
-        props: PropTypes
+        mediumCard: PropTypes.bool,
+        fixedCard: PropTypes.bool,
+        children: PropTypes.any.isRequired
     };
 
 // --------------------------------------

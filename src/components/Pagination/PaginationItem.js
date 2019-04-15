@@ -35,7 +35,11 @@
 // Define PropTypes 
 // -------------------------------------- 
     PaginationItem.propTypes = {
-        props: PropTypes
+        onItemClick:PropTypes.func,
+        pageCounter:PropTypes.any,
+        showArrow:PropTypes.bool,
+        arrowPosition:PropTypes.string,
+        isActive :PropTypes.bool
     };
 
 

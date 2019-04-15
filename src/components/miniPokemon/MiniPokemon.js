@@ -43,7 +43,8 @@
 // Define PropTypes 
 // -------------------------------------- 
     MiniPokemon.propTypes = {
-        props: PropTypes
+        pokemon: PropTypes.object.isRequired,
+        onPokemonClick : PropTypes.func
     };
 
 

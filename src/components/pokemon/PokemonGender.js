@@ -17,7 +17,7 @@
         const {gender_ratio} = props;
         const genderPercantage = setGenderPercentage(gender_ratio);
         return (
-            <div className = "px-responsiveRow px-profileItem px-profileItemDetails">
+            <div className = " px-profileItem px-profileItemDetails">
                 <h5 className="px-label"> Gender Ratio</h5>
                {
                    gender_ratio === -1 ? <span > Genderless </span>
@@ -35,6 +35,8 @@
 // Set Gender Ratio
 // GenderRatio : The chance of this Pokémon 
 // being female, in eighths; or -1 for genderless.
+// ratio 1 = 100
+// const 12.5
 // --------------------------------------
     const setGenderPercentage = (gender_ratio)=> {
         const maxPercentage = 8;
@@ -55,7 +57,7 @@
 // Define PropTypes 
 // -------------------------------------- 
     PokemonGender.propTypes = {
-        props: PropTypes
+        gender_ratio: PropTypes.number
     };
 
 // --------------------------------------

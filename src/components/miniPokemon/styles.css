@@ -30,7 +30,7 @@ p.px-greyText.px-miniPokemonType {
 
 
 .px-loadingImage {
-    width: 150px;
+    max-width: 150px;
     opacity: 0.1;
 }
 

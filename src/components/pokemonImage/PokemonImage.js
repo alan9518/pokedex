@@ -10,99 +10,47 @@
 // --------------------------------------
     import React, { Component, Fragment } from 'react';
     import PokeballImage from '../../img/pokeball.png'
-    import { Loader } from '../index';
+    import { LazyLoadImage } from 'react-lazy-load-image-component';
+    import {Pokeball} from '../index'
+    import 'react-lazy-load-image-component/src/effects/blur.css';
+
+    
     import PropTypes from 'prop-types';
 
 
-// --------------------------------------
-// Create Component Class
-// --------------------------------------
-    class PokemonImage extends Component {
-        /* ==========================================================================
-        ** Component Setup
-        ** ========================================================================== */
-        // --------------------------------------
-        // Constructor
-        // --------------------------------------
-        constructor(props) {
-            super(props);
-            this.state = {
-                isLoaded: false,
-                imageLoading: true,
-                imageError: false
-            }
-        }
 
+// --------------------------------------
+// Create Functional Component
+// --------------------------------------
+const PokemonImage = (props) => {
+    const {pokemonID} =  props;
+    const imageURL =  `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/${pokemonID}.png?raw=true`;
     
-        // --------------------------------------
-        // Image Is Loaded
-        // --------------------------------------
-        handleImageLoaded = () => {
-            this.setState({ imageLoading: false });
-        }
-
-        // --------------------------------------
-        // Error While Loading the Image
-        // --------------------------------------
-
-        handleImageErrored = () => {
-            this.setState({ imageError : true});
-        }
-
-
-        /* ==========================================================================
-        ** Render Methods
-        ** ========================================================================== */
-        // --------------------------------------
-        // Render Projects
-        // --------------------------------------
-        renderPokemonImage() {
-            const { pokemonID } = this.props;
-            const { imageLoading, imageError } = this.state;
-            const imageURL = `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/${pokemonID}.png?raw=true`;
-
-            return (
-                <Fragment>
-                    <div className="px-pokemonImageContainer">
-                        {
-                            imageLoading === true ||  imageError === true?   
-                            <img
-                                    className="px-loadingImage"
-                                    style = {{width: 150, opacity:0.1}}
-                                    src={PokeballImage}
-                                    alt = 'Loading...'
-                                    // onLoad={this.handleImageLoaded}
-                                />
-                        
-                            :
-                                <img
-                                    className="px-pokemonImage px-pokemonImageGrid"
-                                    src={imageURL}
-                                    alt={imageURL}
-                                    onLoad={this.handleImageLoaded}
-                                    onError={this.handleImageErrored} />
-                        }
-
-                        {this.state.imageStatus}
-                    </div>
-                </Fragment>
-            )
-        }
-        // --------------------------------------
-        // Render Component
-        // --------------------------------------
-        render() {
-            return this.renderPokemonImage();
-        }
-    }
+    return (
+        <Fragment>
+            <div className="px-pokemonImageContainer">
+                <LazyLoadImage
+                    key={`${pokemonID}-image`}
+                    alt={'image.alt'}
+                    src={imageURL}
+                    effect="blur"
+                    width={150} />
+            </div>
+        </Fragment>
+    )
+}
 
 // -------------------------------------- 
 // Define PropTypes 
 // -------------------------------------- 
     PokemonImage.propTypes = {
-        props: PropTypes
+        pokemonID: PropTypes.string
     };
+    
 // --------------------------------------
 // Export Component
 // --------------------------------------
     export default PokemonImage;
+
+
+  

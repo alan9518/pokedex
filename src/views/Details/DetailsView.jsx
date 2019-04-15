@@ -38,43 +38,27 @@
             // --------------------------------------
             // Load Data Initial
             // --------------------------------------
-            componentDidMount() {
+            async componentDidMount() {
                 const {showDetails, currentPokemon} = this.props;
-				console.log("TCL: DetailsView -> componentDidMount -> currentPokemon", currentPokemon)
-                console.log("TCL: DetailsView -> componentDidMount -> showDetails", showDetails)
-                
-                if(showDetails) {
+				    
+                if(showDetails) 
                     this.loadAPI(currentPokemon);
-                }
+                
             }
 
 
             // --------------------------------------
             // Update Props & State
+            // Whenever the selected pokemon changes o
+            // the HomeView
             // --------------------------------------
             componentWillReceiveProps = (nextProps) => {
-				console.log("TCL: DetailsView -> componentWillReceiveProps -> nextProps", nextProps)
-                
-                console.log("TCL: DetailsView -> componentDidMount -> this.props", this.props)
-
-                if(nextProps.currentPokemon !== this.props.currentPokemon ) {
+                if(nextProps.currentPokemon !== this.props.currentPokemon ) 
                     this.loadAPI(nextProps.currentPokemon);
-                }
-
-        
+                
             }
 
 
-
-    
-
-            // --------------------------------------
-            // Filter Pokemon Details Object
-            // --------------------------------------
-            getPokemonStats(pokemonData) {
-                const pokemonStats = pokemonData.filter((pokemon)=>pokemon.stats);
-				console.log("TCL: DetailsView -> getPokemonStats -> pokemonStats", pokemonStats)
-            }
 
 
        /* ==========================================================================
@@ -85,22 +69,29 @@
             // Load All Async Requests
             // --------------------------------------
             async loadAPI(currentPokemon) {
-			    console.log("TCL: DetailsView -> loadAPI -> currentPokemon", currentPokemon)
+                
+                try {
+                    // Declare Axios Promises
+                    const pokemonsPromise = await this.getPokemonDetails(currentPokemon);
+                    const pokemonSpeciePromise = await this.getPokemonSpecies(currentPokemon);
+                   
 
-                const pokemonsPromise = await this.getPokemonDetails(currentPokemon);
-                const pokemonDetailsData =  await pokemonsPromise.data;
+                    // Execute all Promises
+                    const [pokemonDetailsData, pokemonSpecieData] = await Promise.all([pokemonsPromise, pokemonSpeciePromise])
+    
+                    // Update Data
+                    this.setState({
+                        pokemonDetails : pokemonDetailsData.data,
+                        pokemonSpecie : pokemonSpecieData.data,
+                        isLoaded :true
+                    })
+                }
+                catch(error) {
+					console.log("TCL: DetailsView -> loadAPI -> error", error)
+                    
+                }
 
-                const pokemonSpeciePromise = await this.getPokemonSpecies(currentPokemon);
-                const pokemonSpecieData =  await pokemonSpeciePromise.data;
-				console.log("TCL: DetailsView -> loadAPI -> pokemonSpecieData", pokemonSpecieData)
-
-                console.log("TCL: HomeView -> onPokemonItemClick -> pokemonDetailsData", pokemonDetailsData)
-
-                 this.setState({
-                    pokemonDetails : pokemonDetailsData,
-                    pokemonSpecie : pokemonSpecieData,
-                    isLoaded :true
-                })
+               
             }
 
 
@@ -130,15 +121,16 @@
            // -------------------------------------- */
            renderPokemonDetails() {
                const {pokemonDetails, pokemonSpecie} = this.state;
-               console.log("TCL: DetailsView -> renderPokemonDetails -> pokemonDetails", pokemonDetails)
-               const {id, stats, name, abilities,weight,height} = pokemonDetails;
+               const {sprites} = pokemonDetails
+               console.log("TCL: DetailsView -> renderPokemonDetails -> sprites", sprites)
+               const {id, stats, name, abilities, weight, height} = pokemonDetails;
             
 
 
                return (
                     <Fragment> 
-                        <PokemonDetails pokemonID = {id} pokemonStats = {stats} pokemonName = {name}/>
-                        <PokemonProfile pokemonAbilities = {abilities}  pokemonSpecie = {pokemonSpecie}  weight = {weight} height = {height}/>
+                        <PokemonDetails pokemonID = {id} pokemonStats = {stats} pokemonName = {name} pokemonGallery = {sprites}/>
+                        <PokemonProfile pokemonAbilities = {abilities}  pokemonSpecie = {pokemonSpecie}  weight = {weight} height = {height} pokemonStats = {stats}/>
                     </Fragment>
                )
            }
@@ -167,10 +159,7 @@
             // Render Component
             // --------------------------------------
             render() {
-                const {showDetails, currentPokemon} = this.props;
-                console.log("TCL: DetailsView -> componentDidMount -> this.props", this.props)
-                // return pokemonDetails.length > 0 ? this.renderDetailsView(pokemonDetails) : 
-
+                const {showDetails} = this.props;
                 return showDetails === true ? this.renderDetailsView()  : this.renderNoPokemonSelected();
             }
     }
@@ -179,7 +168,8 @@
 // Define PropTypes 
 // -------------------------------------- 
     DetailsView.propTypes = {
-        props: PropTypes
+        currentPokemon: PropTypes.string,
+        showDetails : PropTypes.bool.isRequired
     };
 // --------------------------------------
 // Export Component

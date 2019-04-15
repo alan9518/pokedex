@@ -19,8 +19,8 @@
     const Apploader = (props) => {  
         const {customHeight} = props;
         return (
-            <div class="px-wrapper">
-                <div class="px-pokeball"></div>
+            <div className="px-wrapper">
+                <div className="px-pokeball"></div>
             </div>
         )
     }   

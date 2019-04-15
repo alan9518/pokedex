@@ -44,8 +44,8 @@ class SearchBar extends Component {
             return (
                 <Fragment>
 
-                    <form class="px-searchContainer">
-                        <img className="px-searchIcon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"/>
+                    <form className="px-searchContainer">
+                        <img className="px-searchIcon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png" alt = "search"/>
                         <input type="text" id="px-searchBar" placeholder="Search Pokemon"/>
                         
                     </form>
@@ -63,9 +63,9 @@ class SearchBar extends Component {
 // -------------------------------------- 
 // Define PropTypes 
 // -------------------------------------- 
-SearchBar.propTypes = {
-    props: PropTypes
-};
+// SearchBar.propTypes = {
+//     props: PropTypes
+// };
 // --------------------------------------
 // Export Component
 // --------------------------------------

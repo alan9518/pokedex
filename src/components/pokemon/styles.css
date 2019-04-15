@@ -45,3 +45,11 @@ h2.px-pokemonTitle {
     padding: 5px 0;
 }
 
+.px-profileItem {
+    padding: 5px 0;
+}
+
+.px-label {
+    font-size: 16px;
+    margin-bottom: 5px
+}

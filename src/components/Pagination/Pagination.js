@@ -18,24 +18,22 @@
     const Pagination = (props) => {
 
         
-        const { currentPage, dataCount, onItemClick, itemsPerPage, next, previous } = props;
-		console.log("TCL: Pagination -> prev", previous)
-		console.log("TCL: Pagination -> next", next)
+        const { currentPage, dataCount, onItemClick, itemsPerPage} = props;
+	
 
 
 
         // Define Pagination Settings
-        const totalPages = Math.ceil(dataCount / itemsPerPage);
-        const maxItemsToShow = 6;
-        let start_loop = currentPage;
-        let difference = totalPages - currentPage;
+            const totalPages = Math.ceil(dataCount / itemsPerPage);
+            const maxItemsToShow = 6;
+            let start_loop = currentPage;
+            let difference = totalPages - currentPage;
 
-        if (difference <= itemsPerPage)
-            start_loop = totalPages - itemsPerPage;
+            if (difference <= itemsPerPage)
+                start_loop = totalPages - itemsPerPage;
 
-
-        let end_loop = start_loop + itemsPerPage;
-		console.log("TCL: Pagination -> end_loop", end_loop)
+            let end_loop = start_loop + itemsPerPage;
+            
 	
         // Iterate To Create Items List
         const renderPaginationItems = () => {
@@ -71,7 +69,7 @@
                        
                         currentPage > 1 &&   <PaginationItem  
                                                 key = {`pagItem-prev`} 
-                                                onItemClick = {props.onItemClick} 
+                                                onItemClick = {onItemClick} 
                                                 pageCounter = {'previous'} 
                                                 showArrow = {true}
                                                 arrowPosition = {'left'}
@@ -83,10 +81,10 @@
                     }
 
                     {
-                        // currentPage <= end_loop && <li className="next"><a href="#"><i className="fa fa-angle-double-right"></i></a></li>
+                        
                         currentPage < end_loop && <PaginationItem  
                                                 key = {`pagItem-next`} 
-                                                onItemClick = {props.onItemClick} 
+                                                onItemClick = {onItemClick} 
                                                 pageCounter = {'next'} 
                                                 showArrow = {true}
                                                 arrowPosition = {'right'}
@@ -103,7 +101,11 @@
 // Define PropTypes 
 // -------------------------------------- 
     Pagination.propTypes = {
-        props: PropTypes
+        currentPage : PropTypes.number,
+        dataCount : PropTypes.number,
+        onItemClick : PropTypes.func,
+        itemsPerPage : PropTypes.number,
+        
     };
 
 

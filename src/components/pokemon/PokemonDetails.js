@@ -30,11 +30,11 @@
 
                <div className="row">
 
-                    <div className="col-md-5">
+                    <div className="col-md-6">
                        <PokemonImage pokemonID = {pokemonID} />
                     </div>
 
-                    <div className="col-md-7">
+                    <div className="col-md-6">
                         <div className="px-pokemonStatsContainer">
                             <StatsList pokemonStats = {pokemonStats}/>
                         </div>

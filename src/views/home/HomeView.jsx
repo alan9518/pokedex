@@ -158,7 +158,7 @@
                     <div className="bootstrap-wrapper">
                         <div className="container-fluid">
                             <div className="row">
-                                <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                    {this.renderPokemonDetails()}
                                 </div>
                                 <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12">
@@ -186,7 +186,7 @@
                 const {currentPokemon, showDetails} = this.state;
 				console.log("TCL: HomeView -> rendercurrentPokemon -> currentPokemon", currentPokemon)
                 return  (
-                    <CardContainer fixedCard = {true}>  
+                    <CardContainer fixedCard = {true} key = {'detailsCardContainer'}>  
                         <DetailsView  currentPokemon = {currentPokemon} showDetails = {showDetails}/>
                     </CardContainer>
                 )
@@ -227,7 +227,7 @@
             renderPagination() {
                 const {pokemonsData, currentPage} = this.state;
                 const {previous, next, count} = pokemonsData
-                // return <CardContainer>    <Pagination currentPage = {currentPage} dataCount = {anunciosCount} onItemClick = {this.onPageitemCick} itemsPerPage = {itemsPerPage}/> </CardContainer>
+
                 return (
                     <CardContainer mediumCard = {true}>    
                         <Pagination currentPage = {currentPage} dataCount = {count} onItemClick = {this.onPageitemCick} itemsPerPage = {50} next = {next} prev = {previous}/> 
@@ -265,12 +265,8 @@
                 return isLoaded ? this.renderHomeView() : this.renderLoader();
             }
     }
-// -------------------------------------- 
-// Define PropTypes 
-// -------------------------------------- 
-HomeView.propTypes = {
-    props: PropTypes
-};
+
+
 // --------------------------------------
 // Export Component
 // --------------------------------------

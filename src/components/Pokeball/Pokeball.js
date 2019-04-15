@@ -17,10 +17,11 @@
 // Create Functional Component
 // --------------------------------------
     const Pokeball = (props) => {
+        const {width} = props;
         return (
             <div className = "px-cardContent">
                 <h2> Select a Pokémon </h2>
-                <img src = {PokeballImage} alt="No pokemon Selected" className = "px-cardContentImage" />
+                <img src = {PokeballImage} alt="No pokemon Selected" className = "px-cardContentImage" width = {width }/>
             </div>
         )
     }
@@ -29,9 +30,9 @@
 // -------------------------------------- 
 // Define PropTypes 
 // -------------------------------------- 
-    Pokeball.propTypes = {
-        props: PropTypes
-    };
+    // Pokeball.propTypes = {
+    //     props: PropTypes
+    // };
 
 
 // --------------------------------------

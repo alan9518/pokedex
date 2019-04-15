@@ -28,7 +28,7 @@
                     {  
                         pokemons && pokemons.map((pokemon, index)=> {
                             return (
-                                <div className="col-md-3"> 
+                                <div className="col-md-3" key = {`miniPokemonCol-${pokemon.name}`} > 
                                     <MiniPokemon 
                                         pokemon = {pokemon} 
                                         key = {`miniPokemon-${pokemon.name}`} 
@@ -49,7 +49,8 @@
 // Define PropTypes 
 // -------------------------------------- 
     GridView.propTypes = {
-        props: PropTypes
+        pokemons: PropTypes.array,
+        onPokemonClick : PropTypes.func
     };
 
 

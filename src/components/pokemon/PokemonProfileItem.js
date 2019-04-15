@@ -15,7 +15,7 @@
     const PokemonProfileItem = (props) => {
         const {label, value} = props;
         return (
-            <div className = "px-responsiveRow px-profileItem px-profileItemDetails">
+            <div className = " px-profileItem px-profileItemDetails">
                 <h5 className="px-label"> {label} </h5>
                 <span className = "px-capitalize"> { value } </span>
             </div>
