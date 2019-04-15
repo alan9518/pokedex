@@ -1,6 +1,6 @@
 /* ==========================================================================
-** No Pokemon Selected Layout Component
-** 13/04/2019
+** POkemon Stats List Layout
+** 14/04/2019
 ** Alan Medina Silva
 ** ========================================================================== */
 
@@ -8,33 +8,38 @@
 // Get Dependences
 // --------------------------------------
     import React from 'react';
-    import PokeballImage from '../../img/pokeball.png'
+    import {StatItem} from '../index'
     import PropTypes from 'prop-types';
-    import './styles.css';
-
 
 // --------------------------------------
 // Create Functional Component
 // --------------------------------------
-    const Pokeball = (props) => {
+    const StatsList = (props) => {
+        const {pokemonStats} = props;
         return (
-            <div className = "px-cardContent">
-                <h2> Select a Pokémon </h2>
-                <img src = {PokeballImage} alt="No pokemon Selected" className = "px-cardContentImage" />
+            <div className="px-pokemonStatsContainer">
+                <ul>
+                    {
+                        pokemonStats && pokemonStats.map((stat)=> {
+                            return (
+                                <StatItem statData = {stat}/>
+                            )
+                        })
+                    }          
+                </ul>
+                   
             </div>
         )
     }
 
-
 // -------------------------------------- 
 // Define PropTypes 
 // -------------------------------------- 
-    Pokeball.propTypes = {
+    StatsList.propTypes = {
         props: PropTypes
     };
-
 
 // --------------------------------------
 // Export Component
 // --------------------------------------
-    export default Pokeball;
+    export default StatsList;

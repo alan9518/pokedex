@@ -9,12 +9,15 @@
 // Import Components
 // --------------------------------------
     import HomeView from './home/HomeView';
-
+    import DetailsView from './Details/DetailsView';
+    import GridView from './gridView/GridView'
 
 
 // --------------------------------------
 // Export Components
 // --------------------------------------       
     export {
-        HomeView
+        HomeView,
+        DetailsView,
+        GridView
     }

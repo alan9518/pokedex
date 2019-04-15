@@ -15,15 +15,18 @@ ul.px-pagination {
 }
 
 button.px-paginationButton {
+    cursor: pointer;
     background-color: transparent;
     border: none;
     color: #4a4a4a;
     padding: 8px 14px;
     font-weight: 600;
     font-size: 20px;
+    margin: 0 5px;
 }
 
 button.px-paginationButton:hover {
+    border-radius: 50%;
     background-color: #ef9809;
     color: #ffffff;
 }   
@@ -31,6 +34,7 @@ button.px-paginationButton:hover {
 
 
 button.px-paginationButton.px-active {
+    border-radius: 50%;
     background-color: #ef9809;
     color: #ffffff;
 }

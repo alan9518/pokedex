@@ -26,11 +26,11 @@
         let start_loop = currentPage;
         let difference = totalPages - currentPage;
 
-        if (difference <= 4)
-            start_loop = totalPages - 4;
+        if (difference <= itemsPerPage)
+            start_loop = totalPages - itemsPerPage;
 
 
-        let end_loop = start_loop + 4;
+        let end_loop = start_loop + itemsPerPage;
 
         console.log("TCL: Pagination -> totalPages", totalPages)
 

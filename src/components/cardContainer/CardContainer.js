@@ -16,9 +16,13 @@
 // Create Functional Component
 // --------------------------------------
     const CardContainer = (props) => {
-        const {children} = props;
+        const {mediumCard, fixedCard, children} = props;
+        const cardClass = mediumCard === true ? 'px-cardContainer px-mediumCard' : 'px-cardContainer';
+        const fixedStyles = fixedCard && {
+            position : 'fixed', left : '10px', width : '33%'
+        }
         return (
-            <div className = "px-cardContainer"> 
+            <div className = {cardClass} style = {fixedStyles}> 
                 <div className="px-cardContent">
                     {children}
                 </div>

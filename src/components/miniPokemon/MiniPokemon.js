@@ -8,6 +8,7 @@
 // Get Dependences
 // --------------------------------------
     import React from 'react';
+    import {PokemonImage} from '../index'
     import PropTypes from 'prop-types';
     import './styles.css';
 
@@ -16,19 +17,20 @@
 // Create Functional Component
 // --------------------------------------
     const MiniPokemon = (props) => {
+        const {pokemon, onPokemonClick} = props;
+        const {name, url} = pokemon;
+        const pokemonIndex = url.split('/')[url.split('/').length-2];
         return (
-            <div className = "px-column px-miniPokemonContainer ">
+            <div className = "px-column px-miniPokemonContainer " id = {name}  onClick = {props.onPokemonClick}>
 
-                <div className="px-pokemonImageContainer">
-                    <img className = "px-pokemonImage"src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt=""/>
-                </div>
+               <PokemonImage pokemonID = {pokemonIndex} key = {`miniImage-${name}`}/>
 
-                <div className="px-miniPokemonDetails px-column">
+                <div className="px-miniPokemonDetails px-column" >
                     <div className="px-idContainer">
-                        <span> 001 </span>
+                        <span> {pokemonIndex} </span>
                     </div>
 
-                    <p className = "px-greyTitle px-miniPokemonTitle "> Bulbasur </p>
+                    <p className = "px-greyTitle px-miniPokemonTitle "> {name} </p>
                     <p className = "px-greyText px-miniPokemonType"> Type : Poison </p>
                 </div>
 

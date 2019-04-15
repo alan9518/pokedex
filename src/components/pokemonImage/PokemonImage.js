@@ -1,6 +1,7 @@
 /* ==========================================================================
-** No Pokemon Selected Layout Component
-** 13/04/2019
+** Pokemon Image Layout
+** Images from https://github.com/PokeAPI/sprites/tree/master/sprites/pokemon
+** 14/04/2019
 ** Alan Medina Silva
 ** ========================================================================== */
 
@@ -8,19 +9,19 @@
 // Get Dependences
 // --------------------------------------
     import React from 'react';
-    import PokeballImage from '../../img/pokeball.png'
     import PropTypes from 'prop-types';
-    import './styles.css';
 
 
 // --------------------------------------
 // Create Functional Component
 // --------------------------------------
-    const Pokeball = (props) => {
+    const PokemonImage = (props) => {
+        const {pokemonID} =  props;
+        const imageURL =  `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/${pokemonID}.png?raw=true`;
+        
         return (
-            <div className = "px-cardContent">
-                <h2> Select a Pokémon </h2>
-                <img src = {PokeballImage} alt="No pokemon Selected" className = "px-cardContentImage" />
+            <div className="px-pokemonImageContainer">
+                <img className = "px-pokemonImage px-pokemonImageGrid" src = {imageURL} alt=""/>
             </div>
         )
     }
@@ -29,7 +30,7 @@
 // -------------------------------------- 
 // Define PropTypes 
 // -------------------------------------- 
-    Pokeball.propTypes = {
+    PokemonImage.propTypes = {
         props: PropTypes
     };
 
@@ -37,4 +38,4 @@
 // --------------------------------------
 // Export Component
 // --------------------------------------
-    export default Pokeball;
+    export default PokemonImage;

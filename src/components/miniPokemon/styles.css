@@ -22,3 +22,11 @@ p.px-greyText.px-miniPokemonType {
     font-size: 1.2em;
     font-weight: 400;
 }
+
+.px-pokemonImageGrid {
+    width: 250px;
+}
+
+.px-miniPokemonContainer {
+    cursor: pointer;
+}

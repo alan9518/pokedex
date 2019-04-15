@@ -13,10 +13,14 @@
     import PokemonDetails from './pokemon/PokemonDetails';
     import PokemonProfile from './pokemon/PokemonProfile';
     import MiniPokemon from './miniPokemon/MiniPokemon';
+    import PokemonImage from './pokemonImage/PokemonImage';
     import ProgressBar from './progress/ProgressBar';
     import SearchBar from './search/SearchBar';
     import Pagination from './Pagination/Pagination';
-    import PaginationItem from './Pagination/PaginationItem'
+    import PaginationItem from './Pagination/PaginationItem';
+    import Loader from './Loader/Loader';
+    import StatsList from './pokemonStats/StatsList';
+    import StatItem from './pokemonStats/StatItem'
 
 // --------------------------------------
 // Export Components
@@ -28,7 +32,11 @@
         PokemonProfile,
         ProgressBar,
         MiniPokemon,
+        PokemonImage,
         SearchBar,
         Pagination,
         PaginationItem,
+        Loader,
+        StatsList,
+        StatItem
     }

@@ -18,18 +18,11 @@
     const ProgressBar = (props) => {
         const {statValue}  = props;
         return (
-            <div className="px-progressBar">
-                <div className="px-filler" style={{ width: `${statValue}%` }} >  {`${statValue}%`}  </div>
-                {/*<span style={{ width: `${statValue}%` }}></span>*/}
+            <div className="px-progress-bar px-green px-stripes">
+                <span style={{ width: `${statValue}%` }} className = "px-filler">  </span>
+                <span className = "px-counter">   {`${statValue}%`}  </span>
             </div>
         )
-
-
-        // return (
-        //     <div class="meter">
-        //         <span style={{ width: `${statValue}%` }}></span>
-        //     </div>
-        // )
     }
 
 // -------------------------------------- 

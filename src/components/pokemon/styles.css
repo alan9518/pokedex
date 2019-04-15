@@ -3,56 +3,45 @@
 ** 13/04/2019
 ** Alan Medina Silva
 ** ========================================================================== */
+ 
 
-.px-pokemonImageContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-}
 
 .px-pokemonDetailsContainer {
     width: 100%;
     border-bottom: 2px solid #e2e2e2;
+    margin-bottom: 20px;
 }
 
-.px-pokemonTitle {
-    text-align: center;
-}
-
-.px-pokemonProfileContainer {
-    width: 100%;
-    margin-top: 10px;
-}
-
-.px-profileItem {
-  
-    width: 100%;
-    padding: 5px;
-    text-align: left;
-    align-items: center;
-    
-}
-
-.px-pokemonImage {
-    width: 200px;
-    height: auto;
-}
-
-.px-pokemonStatsContainer {
-    display: -webkit-flex;
+.px-pokemonImageContainer {
+    margin: auto;
     display: flex;
-    -webkit-flex-direction: column;
-    flex-direction: column;
-    -webkit-align-items: left;
-    align-items: left;
-    -webkit-justify-content: space-around;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     height: 100%;
-    justify-content: space-between;
-    margin-bottom: 10px;
 }
 
-.px-pokemonStatsContainer  ul {
+.px-pokemonStatsContainer ul {
     list-style: none;
 }
+
+.px-pokemonStat {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.px-responsiveRow.px-profileItem {
+    align-items: center;
+}
+
+h2.px-pokemonTitle {
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+
+.px-responsiveRow.px-profileItem.px-profileItemDetails {
+    justify-content: space-between;
+    padding: 5px 0;
+}
+

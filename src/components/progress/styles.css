@@ -4,111 +4,89 @@
 ** Alan Medina Silva
 ** ========================================================================== */
 
+.px-progress-bar {
+  background-color: #d8d8d8;
+  height: 28px;
+  position: relative;
+  width: 140px;
+  border-radius: 5px;
+}
+
+.px-progress-bar span.px-filler {
+  display: inline-block;
+  height: 100%;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+  transition: width .4s ease-in-out;
+}
+
+.px-blue span.px-filler {
+  background-color: #34c2e3;
+}
+
+.px-orange span.px-filler {
+  background-color: #fecf23;
+  background-image: linear-gradient(top, #fecf23, #fd9215);
+}
+
+.px-green span.px-filler {
+  background-color: #66b311;
+  background-image: linear-gradient(top, #a5df41, #4ca916);
+}
+
+.px-stripes span.px-filler {
+  background-size: 15px 15px;
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  animation: animate-stripes 3s linear infinite;
+}
+
+.px-counter {
+  position: absolute;
+  color: #fff;
+  left: 3px;
+  top: 3px;
+}
+
+@keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 60px 0;
+  }
+}
+
 .px-progressBar {
-    position: relative;
-    background-color: #d8d8d8;
-    height: 28px;
-    width: 220px;
-    border-radius: 5px;
-    text-align: center; 
-    line-height: 28px; /* To center it vertically */
-    color: white; 
+  position: relative;
+  background-color: #d8d8d8;
+  height: 28px;
+  width: 140px;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 28px;
+  /* To center it vertically */
+  color: white;
+  box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;
 }
 
 .px-filler {
-    background: #66b311;
-    height: 100%;
-    border-radius: inherit;
-    transition: width .2s ease-in;
+  background: #66b311;
+  height: 100%;
+  border-radius: inherit;
+  transition: width .2s ease-in;
 }
 
-
-
-/* .px-progressBar { 
-    
-	height: 28px;  
-	position: relative;
-	background: #7ed321;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
-	padding: 10px;
-	box-shadow: inset 0 -1px 1px #d8d8d8;
-} */
-
-
-.px-progressBar > span:after {
-    /* content: ""; */
-    position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
-    background-image: linear-gradient(
-      -45deg, 
-      rgba(102, 179, 17, 1) 25%, 
-      transparent 25%, 
-      transparent 50%, 
-      rgba(102, 179, 17, 1) 50%, 
-      rgba(102, 179, 17, 1) 75%, 
-      transparent 75%, 
-      transparent
-    );
-    z-index: 1;
-    background-size: 8px 8px;
-    animation: move 2s linear infinite;
-    /* border-top-right-radius: 8px; */
-    /* border-bottom-right-radius: 8px; */
-    /* border-top-left-radius: 20px; */
-    /* border-bottom-left-radius: 20px; */
-    /* overflow: hidden; */
-  }
-
-/* 
-.meter { 
-    width: 250px;
-	height: 20px;  
-	position: relative;
-	background: #7ed321;
-	-moz-border-radius: 25px;
-	-webkit-border-radius: 25px;
-	border-radius: 25px;
-	padding: 10px;
-	box-shadow: inset 0 -1px 1px rgba(102, 179, 17, 1);
+.px-progressBar span {
+  background-size: 30px 30px;
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  animation: animate-stripes 3s linear infinite;
 }
 
-
-.meter > span:after {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
-    background-image: linear-gradient(
-      -45deg, 
-      rgba(102, 179, 17, 1) 25%, 
-      transparent 25%, 
-      transparent 50%, 
-      rgba(102, 179, 17, 1) 50%, 
-      rgba(102, 179, 17, 1) 75%, 
-      transparent 75%, 
-      transparent
-    );
-    z-index: 1;
-    background-size: 8px 8px;
-    animation: move 2s linear infinite;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    overflow: hidden;
-  } */
-
-  /* @keyframes move {
-    0% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: 50px 50px;
-    }
+@keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
   }
-
-  .meter > span:after, .animate > span > span {
-    animation: move 6s linear infinite;
-  } */
-
+  100% {
+    background-position: 60px 0;
+  }
+}
