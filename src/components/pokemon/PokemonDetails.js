@@ -9,8 +9,9 @@
 // --------------------------------------
     import React from 'react';
     import PropTypes from 'prop-types';
-    import {ProgressBar, PokemonImage, StatsList} from '../../components'
+    import {ProgressBar, PokemonImage, StatsList, PokemonCounter} from '../../components'
     import './styles.css';
+    
     
 // --------------------------------------
 // Create Functional Component
@@ -23,7 +24,7 @@
 
               <div className="row">
                 <div className="col-md-12">
-                    <h2 className = "px-pokemonTitle px-greyTitle"> {pokemonID} - {pokemonName} </h2>
+                    <PokemonCounter  pokemonID = {pokemonID}  pokemonName = {pokemonName} showTag = {false}/>
                 </div>
               </div>
 

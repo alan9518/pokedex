@@ -8,12 +8,18 @@
 // Get Dependences
 // --------------------------------------
     import React from 'react';
+    import {PokemonProfileItem, PokemonGender} from '../index';
     import PropTypes from 'prop-types';
 
 // --------------------------------------
 // Create Functional Component
 // --------------------------------------
     const PokemonProfile = (props) => {
+
+        const {pokemonAbilities, weight, height, pokemonSpecie } = props;
+        const {capture_rate, hatch_counter, egg_groups, gender_rate} = pokemonSpecie;
+		console.log("TCL: PokemonProfile -> pokemonAbilities", pokemonAbilities)
+
         return (
             <div className="container px-pokemonProfileContainer">
                <div className="row">
@@ -24,42 +30,28 @@
 
                 <div className="row">
                     <div className="col-md-6 col-sm-12 col-xs-12">
-                        <div className = "px-responsiveRow px-profileItem px-profileItemDetails">
-                            <h5 className="px-label"> Height </h5>
-                            <span> 0.7m </span>
-                        </div>
+                        <PokemonProfileItem label = {'Height'} value = {`${convertFeetToMeters(height)}mts`}  />
 
-                        <div className = "px-responsiveRow px-profileItem px-profileItemDetails">
-                            <h5 className="px-label"> Catch Rate </h5>
-                            <span> 0% </span>
-                        </div>
+                        <PokemonProfileItem label = {'Catch Rate'} value = {`${capture_rate}%`}  />
 
-                        <div className = "px-responsiveRow px-profileItem px-profileItemDetails">
-                            <h5 className="px-label"> Egg Groups </h5>
-                            <span> Monster, Grass </span>
-                        </div>
+                        <PokemonProfileItem label = {'Egg Group'} value = {splitArrayDataByName(egg_groups)}  />
+                        
+                        <PokemonProfileItem label = {'Abilities'} value = {splitAbilitiesByName(pokemonAbilities)}  />
 
-                        <div className = "px-responsiveRow px-profileItem px-profileItemDetails">
-                            <h5 className="px-label"> Abilities </h5>
-                            <span> Clorophyl, Overgrow </span>
-                        </div>
+                        
+
+
+                       
                     </div>
 
                     <div className="col-md-6 col-sm-12 col-xs-12">
-                        <div className = "px-responsiveRow px-profileItem px-profileItemDetails">
-                            <h5 className="px-label"> Weight </h5>
-                            <span> 6.9kg </span>
-                        </div>
+                    
+                        <PokemonProfileItem label = {'Weight'} value = {`${convertPoundsToKg(weight)}kg`}  />
 
-                        <div className = "px-responsiveRow px-profileItem px-profileItemDetails">
-                            <h5 className="px-label"> Gender Ratio </h5>
-                            <span> 87.5% M 12.5% G </span>
-                        </div>
 
-                        <div className = "px-responsiveRow px-profileItem px-profileItemDetails">
-                            <h5 className="px-label"> Hatch Steps </h5>
-                            <span> 5100 </span>
-                        </div>
+                        <PokemonGender gender_ratio = {gender_rate}/>
+
+                        <PokemonProfileItem label = {'Hatch Steps'} value = {setStepsToHatchEgg(hatch_counter)}  />
 
                         <div className = "px-responsiveRow px-profileItem px-profileItemDetails">
                             <h5 className="px-label"> EVs </h5>
@@ -70,6 +62,53 @@
             </div>
         )
     }
+
+
+// --------------------------------------
+// Helper Functions to Display Data
+// --------------------------------------
+
+    // Feets to Meters
+    const convertFeetToMeters = (sizeOnFeets)=> {
+        return (sizeOnFeets / 3.2808).toFixed(2);
+    }
+
+    // Pounds to Kg
+    const convertPoundsToKg = (weightOnPounds) => {
+        return (weightOnPounds/2.2046).toFixed(2);
+    }
+
+    // Split Array Data into single String
+    const splitArrayDataByName = (arrayData) => {
+        const namesArray = arrayData.map((arrayItem)=>{return arrayItem.name});
+		console.log("TCL: splitArrayDataByName -> namesArray", namesArray)
+        return namesArray.join(', ')
+        
+    }
+
+     // Split Array Data into single String
+     const splitAbilitiesByName = (arrayData) => {
+        const namesArray = arrayData.map((arrayItem)=>{return arrayItem.ability.name});
+		console.log("TCL: splitArrayDataByName -> namesArray", namesArray)
+        return namesArray.join(', ')
+        
+    }
+
+    // --------------------------------------
+    // Set Steps Required To Hatch
+    // Initial hatch counter: one must walk 255 × (hatch_counter + 1) 
+    // steps before this Pokémon's egg hatches, 
+    // unless utilizing bonuses like Flame Body's.
+    // --------------------------------------
+
+    const setStepsToHatchEgg = (hatch_counter) => {
+        return ( 255 * (hatch_counter + 1))
+    }
+
+
+    // --------------------------------------
+    // Set Pokemon Gender Ratio
+    // --------------------------------------
 
 
 // -------------------------------------- 

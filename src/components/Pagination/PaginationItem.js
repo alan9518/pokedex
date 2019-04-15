@@ -15,6 +15,7 @@
 // --------------------------------------
     const PaginationItem = (props) => {
         const { onItemClick, pageCounter, showArrow, arrowPosition, isActive } = props;
+		console.log("TCL: PaginationItem -> pageCounter", pageCounter)
 
         const className = isActive ? 'site-button px-paginationButton px-active' : 'site-button px-paginationButton';
         return (

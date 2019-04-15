@@ -18,11 +18,15 @@
     const Pagination = (props) => {
 
         
-        const { currentPage, dataCount, onItemClick, itemsPerPage } = props;
+        const { currentPage, dataCount, onItemClick, itemsPerPage, next, previous } = props;
+		console.log("TCL: Pagination -> prev", previous)
+		console.log("TCL: Pagination -> next", next)
+
 
 
         // Define Pagination Settings
         const totalPages = Math.ceil(dataCount / itemsPerPage);
+        const maxItemsToShow = 6;
         let start_loop = currentPage;
         let difference = totalPages - currentPage;
 
@@ -31,21 +35,19 @@
 
 
         let end_loop = start_loop + itemsPerPage;
-
-        console.log("TCL: Pagination -> totalPages", totalPages)
-
-
+		console.log("TCL: Pagination -> end_loop", end_loop)
+	
         // Iterate To Create Items List
         const renderPaginationItems = () => {
             let itemsLayout = []
-            // const activeclass = 'active';
             
+            // currentPage +  maxItemsToShow = Update Items to List
 
-            for (let pageCounter = 1; pageCounter <= end_loop; pageCounter++) {
+            for (let pageCounter = currentPage; pageCounter <= (currentPage +  maxItemsToShow); pageCounter++) {
                 itemsLayout.push(
                     <PaginationItem  
                         key = {`pagItem-${pageCounter}`} 
-                        onItemClick = {props.onItemClick} 
+                        onItemClick = {onItemClick} 
                         pageCounter = {pageCounter} 
                         showArrow = {false}
                         arrowPosition = {null}
@@ -55,7 +57,7 @@
                 
             }
 
-            console.log("TCL: renderPaginationItems -> itemsLayout", itemsLayout)
+            
 
             return itemsLayout
         }
@@ -66,11 +68,11 @@
                 <ul className="px-row px-pagination">
 
                     {
-                        // currentPage > 1 && <li className="previous"><a href="#"><i className="fa fa-angle-double-left"></i></a></li>
+                       
                         currentPage > 1 &&   <PaginationItem  
                                                 key = {`pagItem-prev`} 
                                                 onItemClick = {props.onItemClick} 
-                                                pageCounter = {'prev'} 
+                                                pageCounter = {'previous'} 
                                                 showArrow = {true}
                                                 arrowPosition = {'left'}
                                                 isActive = { false}

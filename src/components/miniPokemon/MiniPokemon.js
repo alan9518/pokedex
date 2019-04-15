@@ -8,9 +8,10 @@
 // Get Dependences
 // --------------------------------------
     import React from 'react';
-    import {PokemonImage} from '../index'
+    import {PokemonImage, PokemonCounter} from '../index'
     import PropTypes from 'prop-types';
     import './styles.css';
+
 
 
 // --------------------------------------
@@ -21,14 +22,13 @@
         const {name, url} = pokemon;
         const pokemonIndex = url.split('/')[url.split('/').length-2];
         return (
-            <div className = "px-column px-miniPokemonContainer " id = {name}  onClick = {props.onPokemonClick}>
+            <div className = "px-column px-miniPokemonContainer " id = {name}  onClick = {onPokemonClick}>
 
                <PokemonImage pokemonID = {pokemonIndex} key = {`miniImage-${name}`}/>
 
                 <div className="px-miniPokemonDetails px-column" >
-                    <div className="px-idContainer">
-                        <span> {pokemonIndex} </span>
-                    </div>
+                   
+                    <PokemonCounter pokemonID = {pokemonIndex} showTag = {true}/>
 
                     <p className = "px-greyTitle px-miniPokemonTitle "> {name} </p>
                     <p className = "px-greyText px-miniPokemonType"> Type : Poison </p>

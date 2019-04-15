@@ -19,5 +19,11 @@
         // @param {offset <String>}
         // @param {limit <String>}
         // --------------------------------------*/
-        getPokemons : `${path}/pokemon`
+        getPokemons : `${path}/pokemon`,
+
+        /** --------------------------------------
+        // Get Pokemon Species Data
+        // @param {/id <String>}
+        // --------------------------------------*/
+        getPokemonSpecie : `${path}/pokemon-species`
     }

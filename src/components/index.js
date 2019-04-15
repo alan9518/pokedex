@@ -12,6 +12,8 @@
     import Pokeball from './Pokeball/Pokeball';
     import PokemonDetails from './pokemon/PokemonDetails';
     import PokemonProfile from './pokemon/PokemonProfile';
+    import PokemonProfileItem from './pokemon/PokemonProfileItem';
+    import PokemonGender from './pokemon/PokemonGender';
     import MiniPokemon from './miniPokemon/MiniPokemon';
     import PokemonImage from './pokemonImage/PokemonImage';
     import ProgressBar from './progress/ProgressBar';
@@ -20,7 +22,8 @@
     import PaginationItem from './Pagination/PaginationItem';
     import Loader from './Loader/Loader';
     import StatsList from './pokemonStats/StatsList';
-    import StatItem from './pokemonStats/StatItem'
+    import StatItem from './pokemonStats/StatItem';
+    import PokemonCounter from './pokemon/PokemonCounter';
 
 // --------------------------------------
 // Export Components
@@ -30,6 +33,8 @@
         Pokeball,
         PokemonDetails,
         PokemonProfile,
+        PokemonProfileItem,
+        PokemonGender,
         ProgressBar,
         MiniPokemon,
         PokemonImage,
@@ -38,5 +43,6 @@
         PaginationItem,
         Loader,
         StatsList,
-        StatItem
+        StatItem,
+        PokemonCounter
     }

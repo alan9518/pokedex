@@ -25,8 +25,22 @@ p.px-greyText.px-miniPokemonType {
 
 .px-pokemonImageGrid {
     width: 250px;
+    opacity: 1;
+}
+
+
+.px-loadingImage {
+    width: 150px;
+    opacity: 0.1;
 }
 
 .px-miniPokemonContainer {
     cursor: pointer;
+    padding : 10px;
+    transition: all 0.3s cubic-bezier(0.25,0.8,0.25,1);
+}
+
+.px-miniPokemonContainer:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
 }

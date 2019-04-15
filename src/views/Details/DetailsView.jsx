@@ -29,6 +29,7 @@
                 super(props);
                 this.state = {
                     pokemonDetails : {},
+                    pokemonSpecie : {},
                     isLoaded: false,
                 }
             }
@@ -65,14 +66,7 @@
 
 
 
-            // --------------------------------------
-            // Set Initial Values
-            // Look For Project ID
-            // --------------------------------------
-            
-
-
-
+    
 
             // --------------------------------------
             // Filter Pokemon Details Object
@@ -87,27 +81,42 @@
         ** Load API
         ** ========================================================================== */
 
-
+            // --------------------------------------
+            // Load All Async Requests
+            // --------------------------------------
             async loadAPI(currentPokemon) {
 			    console.log("TCL: DetailsView -> loadAPI -> currentPokemon", currentPokemon)
 
                 const pokemonsPromise = await this.getPokemonDetails(currentPokemon);
-                const pokemonDetails =  await pokemonsPromise.data;
-                console.log("TCL: HomeView -> onPokemonItemClick -> pokemonDetails", pokemonDetails)
+                const pokemonDetailsData =  await pokemonsPromise.data;
+
+                const pokemonSpeciePromise = await this.getPokemonSpecies(currentPokemon);
+                const pokemonSpecieData =  await pokemonSpeciePromise.data;
+				console.log("TCL: DetailsView -> loadAPI -> pokemonSpecieData", pokemonSpecieData)
+
+                console.log("TCL: HomeView -> onPokemonItemClick -> pokemonDetailsData", pokemonDetailsData)
 
                  this.setState({
-                    pokemonDetails : pokemonDetails
+                    pokemonDetails : pokemonDetailsData,
+                    pokemonSpecie : pokemonSpecieData,
+                    isLoaded :true
                 })
             }
 
 
             // --------------------------------------
-            // Load All Async Requests
+            // Load POkemon Details
             // --------------------------------------
             async getPokemonDetails(currentPokemon) {
                 return axios.get(`${Endpoints.getPokemons}/${currentPokemon}`);
             }
 
+            // --------------------------------------
+            // Load Pokemon Species Data
+            // --------------------------------------
+            async getPokemonSpecies(currentPokemon) {
+                return axios.get(`${Endpoints.getPokemonSpecie}/${currentPokemon}`);
+            }
 
 
 
@@ -120,16 +129,16 @@
            // @param {pokemon <Obect>}
            // -------------------------------------- */
            renderPokemonDetails() {
-               const {pokemonDetails} = this.state;
+               const {pokemonDetails, pokemonSpecie} = this.state;
                console.log("TCL: DetailsView -> renderPokemonDetails -> pokemonDetails", pokemonDetails)
-               const {id, stats, name} = pokemonDetails;
-            // const pokemonStats = this.getPokemonStats(pokemonDetails);
+               const {id, stats, name, abilities,weight,height} = pokemonDetails;
+            
 
 
                return (
                     <Fragment> 
                         <PokemonDetails pokemonID = {id} pokemonStats = {stats} pokemonName = {name}/>
-                        <PokemonProfile/>
+                        <PokemonProfile pokemonAbilities = {abilities}  pokemonSpecie = {pokemonSpecie}  weight = {weight} height = {height}/>
                     </Fragment>
                )
            }
@@ -148,9 +157,9 @@
             // --------------------------------------
             // Render Projects
             // --------------------------------------
-            renderDetailsView(pokemonDetails) {
-				console.log("TCL: DetailsView -> renderDetailsView -> pokemonDetails", pokemonDetails)
-                return ( this.renderPokemonDetails() )
+            renderDetailsView() {
+				const {isLoaded} = this.state;
+                return ( isLoaded &&  this.renderPokemonDetails() )
             }
 
 
@@ -162,7 +171,7 @@
                 console.log("TCL: DetailsView -> componentDidMount -> this.props", this.props)
                 // return pokemonDetails.length > 0 ? this.renderDetailsView(pokemonDetails) : 
 
-                return showDetails === true ? this.renderDetailsView(currentPokemon)  : this.renderNoPokemonSelected();
+                return showDetails === true ? this.renderDetailsView()  : this.renderNoPokemonSelected();
             }
     }
 

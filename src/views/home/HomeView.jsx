@@ -40,8 +40,8 @@
                     limit : 50,
                     isLoaded: false,
                     currentPokemon : null,
-                    showDetails : false
-                    // pokemonDetails : []
+                    showDetails : false,
+                    currentPage : 1
                 }
             }
 
@@ -77,8 +77,8 @@
             // --------------------------------------
             // Load All Async Requests
             // --------------------------------------
-            async getAllPokemons() {
-                const {offset, limit } = this.state;
+            async getAllPokemons(offset = this.state.offset) {
+                const {limit } = this.state;
                 return axios.get(Endpoints.getPokemons,{params:{offset:offset, limit:limit}})
             }
 
@@ -99,11 +99,45 @@
             onPokemonItemClick =  (pokemonName) =>{
                 console.log("TCL: HomeView -> onPokemonItemClick -> event", pokemonName)
                 
-              
-        
-
                 this.setState({currentPokemon : pokemonName, showDetails : true})
+            }
 
+
+
+            // --------------------------------------
+            // Change Page
+            // Load Prev/Next Page
+            // --------------------------------------
+            onPageitemCick = (event)=> {
+                event.preventDefault();
+                const {value} = event.currentTarget;
+                const {limit} = this.state;
+                let newPage = this.state.currentPage;
+                let newOffset = this.state.offset;
+                
+                
+                // Check if is Page Number or Next or Prev
+                switch(value) {
+                    case 'next' : newPage +=1; 
+                        break;  
+                    case 'previous' : newPage -=1; 
+                        break;  
+                    default : 
+                        newPage = parseInt(value); 
+                }
+
+                // Update Offset for Requests
+                newOffset = (newPage - 1) * limit;
+
+
+                // Update Data
+                this.getAllPokemons(newOffset).then((pokemonsData)=> {
+                    this.setState({
+                        currentPage : parseInt(newPage),
+                        pokemonsData : pokemonsData.data,
+                        offset : newOffset
+                    })
+                })
             }
 
         /* ==========================================================================
@@ -191,12 +225,12 @@
             // --------------------------------------
 
             renderPagination() {
-                const {pokemonsData} = this.state;
-                const {count} = pokemonsData
+                const {pokemonsData, currentPage} = this.state;
+                const {previous, next, count} = pokemonsData
                 // return <CardContainer>    <Pagination currentPage = {currentPage} dataCount = {anunciosCount} onItemClick = {this.onPageitemCick} itemsPerPage = {itemsPerPage}/> </CardContainer>
                 return (
                     <CardContainer mediumCard = {true}>    
-                        <Pagination currentPage = {1} dataCount = {count} onItemClick = {(e)=> console.log(e)} itemsPerPage = {50}/> 
+                        <Pagination currentPage = {currentPage} dataCount = {count} onItemClick = {this.onPageitemCick} itemsPerPage = {50} next = {next} prev = {previous}/> 
                     </CardContainer>
                 )
             }
