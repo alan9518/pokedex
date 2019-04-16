@@ -48,7 +48,7 @@
 // Define PropTypes 
 // -------------------------------------- 
     PokemonCounter.propTypes = {
-        pokemonID: PropTypes.string,
+        pokemonID: PropTypes.number,
         pokemonName : PropTypes.string,        
         showTag: PropTypes.bool,        
     };

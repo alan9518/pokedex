@@ -44,7 +44,7 @@ const PokemonImage = (props) => {
 // Define PropTypes 
 // -------------------------------------- 
     PokemonImage.propTypes = {
-        pokemonID: PropTypes.string
+        pokemonID: PropTypes.number
     };
     
 // --------------------------------------

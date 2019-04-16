@@ -53,8 +53,9 @@
             // the HomeView
             // --------------------------------------
             componentWillReceiveProps = (nextProps) => {
+               
                 if(nextProps.currentPokemon !== this.props.currentPokemon ) 
-                    this.loadAPI(nextProps.currentPokemon);
+                    nextProps.currentPokemon &&  this.loadAPI(nextProps.currentPokemon);
                 
             }
 
@@ -68,27 +69,25 @@
             // --------------------------------------
             // Load All Async Requests
             // --------------------------------------
-            async loadAPI(currentPokemon) {
+            async loadAPI(pokemonDetailsData) {
+				
                 
                 try {
-                    // Declare Axios Promises
-                    const pokemonsPromise = await this.getPokemonDetails(currentPokemon);
-                    const pokemonSpeciePromise = await this.getPokemonSpecies(currentPokemon);
-                   
+                    // Declare Axios Promise to Get Species Details
+                    
+                    const pokemonSpeciePromise = await this.getPokemonSpecies(pokemonDetailsData.name);
+                    const pokemonSpecieData = await pokemonSpeciePromise.data;
 
-                    // Execute all Promises
-                    const [pokemonDetailsData, pokemonSpecieData] = await Promise.all([pokemonsPromise, pokemonSpeciePromise])
-    
+                
                     // Update Data
                     this.setState({
-                        pokemonDetails : pokemonDetailsData.data,
-                        pokemonSpecie : pokemonSpecieData.data,
+                        pokemonDetails : pokemonDetailsData,
+                        pokemonSpecie : pokemonSpecieData,
                         isLoaded :true
                     })
                 }
                 catch(error) {
 					console.log("TCL: DetailsView -> loadAPI -> error", error)
-                    
                 }
 
                
@@ -122,7 +121,6 @@
            renderPokemonDetails() {
                const {pokemonDetails, pokemonSpecie} = this.state;
                const {sprites} = pokemonDetails
-               console.log("TCL: DetailsView -> renderPokemonDetails -> sprites", sprites)
                const {id, stats, name, abilities, weight, height} = pokemonDetails;
             
 
@@ -168,7 +166,7 @@
 // Define PropTypes 
 // -------------------------------------- 
     DetailsView.propTypes = {
-        currentPokemon: PropTypes.string,
+        currentPokemon: PropTypes.object,
         showDetails : PropTypes.bool.isRequired
     };
 // --------------------------------------

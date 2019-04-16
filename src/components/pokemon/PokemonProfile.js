@@ -18,7 +18,7 @@
 
         const {pokemonAbilities, weight, height, pokemonSpecie, pokemonStats } = props;
         const {capture_rate, hatch_counter, egg_groups, gender_rate} = pokemonSpecie;
-		console.log("TCL: PokemonProfile -> pokemonAbilities", pokemonAbilities)
+		
 
         return (
             <div className="container px-pokemonProfileContainer">
@@ -63,12 +63,16 @@
 // Helper Functions to Display Data
 // --------------------------------------
 
+    // --------------------------------------
     // Feets to Meters
+    // --------------------------------------
     const convertFeetToMeters = (sizeOnFeets)=> {
         return (sizeOnFeets / 3.2808).toFixed(2);
     }
 
+    // --------------------------------------
     // Pounds to Kg
+    // --------------------------------------
     const convertPoundsToKg = (weightOnPounds) => {
         return (weightOnPounds/2.2046).toFixed(2);
     }
@@ -83,18 +87,22 @@
         return Math.round((100 / 255) * catch_ratio);
     }
 
+    // --------------------------------------
     // Split Array Data into single String
+    // --------------------------------------
     const splitArrayDataByName = (arrayData) => {
         const namesArray = arrayData.map((arrayItem)=>{return arrayItem.name});
-		console.log("TCL: splitArrayDataByName -> namesArray", namesArray)
+		
         return namesArray.join(', ')
         
     }
 
-     // Split Array Data into single String
+    // --------------------------------------
+    // Split Array Data into single String
+    // --------------------------------------
      const splitAbilitiesByName = (arrayData) => {
         const namesArray = arrayData.map((arrayItem)=>{return arrayItem.ability.name});
-		console.log("TCL: splitArrayDataByName -> namesArray", namesArray)
+		
         return namesArray.join(', ')
         
     }
@@ -138,7 +146,11 @@
 // Define PropTypes 
 // -------------------------------------- 
     PokemonProfile.propTypes = {
-        props: PropTypes
+        pokemonAbilities:PropTypes.array,
+        weight:PropTypes.number,
+        height:PropTypes.number,
+        pokemonSpecie:PropTypes.object,
+        pokemonStats:PropTypes.array
     };
 
 // --------------------------------------

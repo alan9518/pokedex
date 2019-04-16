@@ -24,27 +24,29 @@
 						
                         return (
                            
-                            <span>
+                            <p className = "px-greyText px-miniPokemonType" key = {`type-${typeItem.type.name}`}>
                                 {typeItem.type.name
                                     .toLowerCase()
                                     .split(' ')
                                     .map(s => s.charAt(0).toUpperCase() + s.substring(1))
                                     .join(' ')
                                 }
-                            </span>
+                            </p>
                         )
                     })
                 }
             </div>
         )
     }
+
 // -------------------------------------- 
 // Define PropTypes 
 // -------------------------------------- 
-PokemonTypes.propTypes = {
-    props: PropTypes
-};
+    PokemonTypes.propTypes = {
+        types: PropTypes.array
+    };
+
 // --------------------------------------
 // Export Component
 // --------------------------------------
-export default PokemonTypes;
+    export default PokemonTypes;

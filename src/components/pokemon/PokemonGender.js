@@ -42,8 +42,6 @@
         const maxPercentage = 8;
         let femalePercentage = (gender_ratio * 100) / maxPercentage;
         let malePercentage = 100 - femalePercentage
-		console.log("TCL: setGenderPercentage -> malePercentage", malePercentage)
-        console.log("TCL: setGenderPercentage -> femalePercentage", femalePercentage)
         
         return {
             male : malePercentage,

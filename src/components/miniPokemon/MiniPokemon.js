@@ -20,7 +20,7 @@
     const MiniPokemon = (props) => {
         const {pokemon, onPokemonClick} = props;
         const {name, url, id, types} = pokemon;
-		console.log("TCL: MiniPokemon -> types", types)
+		
         const pokemonIndex = id || url.split('/')[url.split('/').length-2];
         return (
             <div className = "px-column px-miniPokemonContainer " id = {name}  onClick = {onPokemonClick}>
@@ -32,7 +32,7 @@
                     <PokemonCounter pokemonID = {pokemonIndex} showTag = {true}/>
 
                     <p className = "px-greyTitle px-miniPokemonTitle "> {name} </p>
-                    <p className = "px-greyText px-miniPokemonType"> Type : <PokemonTypes types = {types}/> </p>
+                    <p className = "px-greyText px-miniPokemonType"> Type : </p>  <PokemonTypes types = {types}/>
                 </div>
 
 

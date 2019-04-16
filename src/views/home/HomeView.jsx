@@ -65,34 +65,18 @@
             async loadAPI() {
                 const pokemonsPromise = await this.getAllPokemons();
                 const pokemonsData =  await pokemonsPromise.data;
-                console.log("TCL: HomeView -> loadAPI -> pokemonsData", pokemonsData)
+                
 
-                // Merge Pokemons And Types
-                const pokemonsLinksArray = pokemonsData.results.map((pokemon) => {return pokemon.url});
-                const promisesArray = pokemonsLinksArray.map(url=>axios.get(url));
-
-                try {
-  
-                    const pokemonDetails = (await Promise.all(promisesArray)).map(res=>res.data)
-                    
-                    // this.setState({ pokemonDetails })
-
-                    console.log("TCL: HomeView -> loadAPI -> pokemonDetails", pokemonDetails)
-
-                     // Set State
-                    this.setState({
-                        pokemonsData : pokemonDetails,
-                        isLoaded : true
-                    })
-                    
-                } 
-                    catch(error) {
-                    console.error(error)
-                }   
+                // get Pokemons All Data for State
+                const pokemonsDetailsData = await this.getPokemonDetails(pokemonsData);
 				
                 
 
-               
+                 // Set State
+                 this.setState({
+                    pokemonsData : pokemonsDetailsData,
+                    isLoaded : true
+                })
             }   
 
             
@@ -104,19 +88,34 @@
                 return axios.get(Endpoints.getPokemons,{params:{offset:offset, limit:limit}})
             }
 
-            // --------------------------------------
-            // Get Single Pokemon
-            // --------------------------------------
-            getPokemonByNameOrId(pokemon) {
-                return axios.get(`${Endpoints.getPokemons}/${pokemon}`);
-            }
 
             // --------------------------------------
             // Get Single Pokemon
             // --------------------------------------
-            getPokemonByUrl(pokemonUrl) {
-                return axios.get(pokemonUrl);
+            async getPokemonDetails(pokemonsData) {
+                // Merge Pokemons And Types
+                const pokemonsLinksArray = pokemonsData.results.map((pokemon) => {return pokemon.url});
+                const promisesArray = pokemonsLinksArray.map(url=>axios.get(url));
+
+                try {
+                    const pokemonDetails = (await Promise.all(promisesArray)).map(res=>res.data)
+                    return pokemonDetails;  
+                } 
+                catch(error) {
+                    console.error(error)
+                    return [];
+                }   
             }
+
+
+            // --------------------------------------
+            // Get Single Pokemon
+            // --------------------------------------
+            async getPokemonByNameOrId(pokemon) {
+                return axios.get(`${Endpoints.getPokemons}/${pokemon}`);
+            }
+
+          
 
 
             // --------------------------------------
@@ -128,7 +127,10 @@
                 if(pokemon.length > 0) {
                     // Call Axios to Filter Pokemon
                     this.getPokemonByNameOrId(pokemon).then((pokemonData)=> {
-                        let pokemonResult = {results : [{name : pokemonData.data.name, id:pokemonData.data.id}]}
+						
+                        
+                        let pokemonResult = [pokemonData.data]
+						
                         this.setState({
                             filteredPokemons : pokemonResult,
                             showNoPokemonFoundMessage : pokemonData.length > 0 ? true : false
@@ -161,12 +163,22 @@
         /* ==========================================================================
         ** Handle State
         ** ========================================================================== */
+
             // --------------------------------------
             // Select Current Pokemon on 
             // Pokemon Grid Item Click
+            // Filter State to get Current Pokemon
             // --------------------------------------
             onPokemonItemClick =  (pokemonName) =>{
-                this.setState({currentPokemon : pokemonName, showDetails : true})
+                const {pokemonsData, filteredPokemons} = this.state;
+                let currentPokemon = null
+                if(filteredPokemons.length > 0) 
+                    currentPokemon = filteredPokemons[0];
+                else
+                    currentPokemon = pokemonsData.filter(pokemon=>pokemon.name === pokemonName)[0];
+                
+				
+                this.setState({currentPokemon : currentPokemon, showDetails : true})
             }
 
 
@@ -199,12 +211,20 @@
 
                 // Update Data
                 this.getAllPokemons(newOffset).then((pokemonsData)=> {
-                    this.setState({
-                        currentPage : parseInt(newPage),
-                        pokemonsData : pokemonsData.data,
-                        offset : newOffset
-                    })
-                })
+                    
+                    //  Promise to Get Pkemon Details
+                    this.getPokemonDetails(pokemonsData.data).then((pokemonsDetailsData)=> {
+						
+						
+                        // Update State with New Pokemons Data
+                        this.setState({
+                            currentPage : parseInt(newPage),
+                            pokemonsData : pokemonsDetailsData,
+                            offset : newOffset
+                        });
+                    });
+                   
+                });
             }
 
 
@@ -260,7 +280,6 @@
             // --------------------------------------
             renderPokemonDetails() {
                 const {currentPokemon, showDetails} = this.state;
-				console.log("TCL: HomeView -> rendercurrentPokemon -> currentPokemon", currentPokemon)
                 return  (
                     <CardContainer fixedCard = {true} key = {'detailsCardContainer'}>  
                         <DetailsView  currentPokemon = {currentPokemon} showDetails = {showDetails}/>
@@ -315,11 +334,11 @@
 
             renderPagination() {
                 const {pokemonsData, currentPage} = this.state;
-                const {previous, next, count} = pokemonsData
+                const {count} = pokemonsData
 
                 return (
                     <CardContainer mediumCard = {true}>    
-                        <Pagination currentPage = {currentPage} dataCount = {count} onItemClick = {this.onPageitemCick} itemsPerPage = {50} next = {next} prev = {previous}/> 
+                        <Pagination currentPage = {currentPage} dataCount = {count} onItemClick = {this.onPageitemCick} itemsPerPage = {50} /> 
                     </CardContainer>
                 )
             }

@@ -9,7 +9,7 @@
 // --------------------------------------
     import React from 'react';
     import PropTypes from 'prop-types';
-    import {ProgressBar, PokemonImage, StatsList, PokemonCounter} from '../../components'
+    import {PokemonImage, StatsList, PokemonCounter} from '../../components'
     import './styles.css';
     
     
@@ -18,7 +18,6 @@
 // --------------------------------------
     const PokemonDetails = (props) => {
         const {pokemonID,pokemonName, pokemonStats} = props;
-		console.log("TCL: PokemonDetails -> props", props)
         return (
             <div className = "container px-pokemonDetailsContainer">
 
