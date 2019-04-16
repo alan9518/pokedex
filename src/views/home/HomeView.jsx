@@ -43,7 +43,7 @@
                     currentPokemon : null,
                     showDetails : false,
                     currentPage : 1,
-                    pokemonFound : false
+                    showNoPokemonFoundMessage : false
                 }
             }
 
@@ -66,13 +66,33 @@
                 const pokemonsPromise = await this.getAllPokemons();
                 const pokemonsData =  await pokemonsPromise.data;
                 console.log("TCL: HomeView -> loadAPI -> pokemonsData", pokemonsData)
+
+                // Merge Pokemons And Types
+                const pokemonsLinksArray = pokemonsData.results.map((pokemon) => {return pokemon.url});
+                const promisesArray = pokemonsLinksArray.map(url=>axios.get(url));
+
+                try {
+  
+                    const pokemonDetails = (await Promise.all(promisesArray)).map(res=>res.data)
+                    
+                    // this.setState({ pokemonDetails })
+
+                    console.log("TCL: HomeView -> loadAPI -> pokemonDetails", pokemonDetails)
+
+                     // Set State
+                    this.setState({
+                        pokemonsData : pokemonDetails,
+                        isLoaded : true
+                    })
+                    
+                } 
+                    catch(error) {
+                    console.error(error)
+                }   
+				
                 
 
-                // Set State
-                this.setState({
-                    pokemonsData : pokemonsData,
-                    isLoaded : true
-                })
+               
             }   
 
             
@@ -91,6 +111,13 @@
                 return axios.get(`${Endpoints.getPokemons}/${pokemon}`);
             }
 
+            // --------------------------------------
+            // Get Single Pokemon
+            // --------------------------------------
+            getPokemonByUrl(pokemonUrl) {
+                return axios.get(pokemonUrl);
+            }
+
 
             // --------------------------------------
             // Search Pokemon By Name
@@ -104,14 +131,14 @@
                         let pokemonResult = {results : [{name : pokemonData.data.name, id:pokemonData.data.id}]}
                         this.setState({
                             filteredPokemons : pokemonResult,
-                            pokemonFound : pokemonData.length > 0 ? true : false
+                            showNoPokemonFoundMessage : pokemonData.length > 0 ? true : false
                         })
                     })
                     .catch((error)=> {
                         console.log("TCL: HomeView -> filterPokemons -> error", error)
                         this.setState({
                             filteredPokemons : [],
-                            pokemonFound : false
+                            showNoPokemonFoundMessage : true
                         })
                     })
                 }
@@ -119,6 +146,7 @@
                 else {
                     this.setState({
                         filteredPokemons : [],
+                        showNoPokemonFoundMessage : false
                     })
                 }
                 
@@ -194,7 +222,7 @@
             // --------------------------------------
             renderGridLayout() {
                 
-                const {pokemonsData, filteredPokemons} = this.state;
+                const {pokemonsData, filteredPokemons, showNoPokemonFoundMessage} = this.state;
 
                 return (
                     <div className="bootstrap-wrapper">
@@ -206,6 +234,8 @@
                                 <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 
                                     {this.renderSearchBar()}
+
+                                    {  filteredPokemons.length <= 0  && showNoPokemonFoundMessage  && this.renderPokemonNotFound()}
 
                                    
                                     { 
@@ -251,13 +281,26 @@
             }
 
             // --------------------------------------
+            // Pokemon Not Found Message
+            // --------------------------------------
+            renderPokemonNotFound() {
+                return (
+                    <CardContainer>   
+                       <h1> Pokemon Not Found  </h1>
+                    </CardContainer>
+                )
+            }
+
+
+
+            // --------------------------------------
             // Grid View
             // --------------------------------------
             renderPokemonsTable(pokemonsData) {
                 return( 
                     <CardContainer>   
                         <GridView 
-                            pokemons = {pokemonsData.results}
+                            pokemons = {pokemonsData}
                             onPokemonItemClick = {this.onPokemonItemClick}
                         />    
 

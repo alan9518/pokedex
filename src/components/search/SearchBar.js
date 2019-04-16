@@ -80,7 +80,7 @@ class SearchBar extends Component {
                         <input 
                             type="text" 
                             id="px-searchBar" 
-                            placeholder="Search Pokemon by Name or ID" 
+                            placeholder="Search Pokémon by Name or ID" 
                             value = {searchText} 
                             name = 'searchText'
                             onChange = {this.onChangeInput}/>

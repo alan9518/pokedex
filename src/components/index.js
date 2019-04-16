@@ -24,6 +24,7 @@
     import StatsList from './pokemonStats/StatsList';
     import StatItem from './pokemonStats/StatItem';
     import PokemonCounter from './pokemon/PokemonCounter';
+    import PokemonTypes from './pokemon/PokemonTypes';
 
 // --------------------------------------
 // Export Components
@@ -35,6 +36,7 @@
         PokemonProfile,
         PokemonProfileItem,
         PokemonGender,
+        PokemonTypes,
         ProgressBar,
         MiniPokemon,
         PokemonImage,
