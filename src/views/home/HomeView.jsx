@@ -36,12 +36,14 @@
                 super(props);
                 this.state = {
                     pokemonsData : [],
+                    filteredPokemons : [],
                     offset : 0,
                     limit : 50,
                     isLoaded: false,
                     currentPokemon : null,
                     showDetails : false,
-                    currentPage : 1
+                    currentPage : 1,
+                    pokemonFound : false
                 }
             }
 
@@ -75,13 +77,52 @@
 
             
             // --------------------------------------
-            // Load All Async Requests
+            // Get all Pokemons
             // --------------------------------------
             async getAllPokemons(offset = this.state.offset) {
                 const {limit } = this.state;
                 return axios.get(Endpoints.getPokemons,{params:{offset:offset, limit:limit}})
             }
 
+            // --------------------------------------
+            // Get Single Pokemon
+            // --------------------------------------
+            getPokemonByNameOrId(pokemon) {
+                return axios.get(`${Endpoints.getPokemons}/${pokemon}`);
+            }
+
+
+            // --------------------------------------
+            // Search Pokemon By Name
+            // --------------------------------------
+            filterPokemons(pokemon) {
+
+                // Choose betwween Look for pokemons or show all pokemons
+                if(pokemon.length > 0) {
+                    // Call Axios to Filter Pokemon
+                    this.getPokemonByNameOrId(pokemon).then((pokemonData)=> {
+                        let pokemonResult = {results : [{name : pokemonData.data.name, id:pokemonData.data.id}]}
+                        this.setState({
+                            filteredPokemons : pokemonResult,
+                            pokemonFound : pokemonData.length > 0 ? true : false
+                        })
+                    })
+                    .catch((error)=> {
+                        console.log("TCL: HomeView -> filterPokemons -> error", error)
+                        this.setState({
+                            filteredPokemons : [],
+                            pokemonFound : false
+                        })
+                    })
+                }
+                // reset FIltered pokemons, to show the ones the original List
+                else {
+                    this.setState({
+                        filteredPokemons : [],
+                    })
+                }
+                
+            }
 
              
           
@@ -97,8 +138,6 @@
             // Pokemon Grid Item Click
             // --------------------------------------
             onPokemonItemClick =  (pokemonName) =>{
-                console.log("TCL: HomeView -> onPokemonItemClick -> event", pokemonName)
-                
                 this.setState({currentPokemon : pokemonName, showDetails : true})
             }
 
@@ -140,6 +179,9 @@
                 })
             }
 
+
+         
+
         /* ==========================================================================
         ** Render Methods
         ** ========================================================================== */
@@ -152,7 +194,7 @@
             // --------------------------------------
             renderGridLayout() {
                 
-                const {pokemonsData} = this.state;
+                const {pokemonsData, filteredPokemons} = this.state;
 
                 return (
                     <div className="bootstrap-wrapper">
@@ -166,7 +208,11 @@
                                     {this.renderSearchBar()}
 
                                    
-                                    {this.renderPokemonsTable(pokemonsData)}
+                                    { 
+                                        filteredPokemons.length <= 0 
+                                        ? this.renderPokemonsTable(pokemonsData)
+                                        : this.renderPokemonsTable(filteredPokemons)
+                                    }
                                  
 
                                     {this.renderPagination()}
@@ -199,7 +245,7 @@
             renderSearchBar() {
                 return  ( 
                     <CardContainer>   
-                        <SearchBar/> 
+                        <SearchBar searchPokemon = {this.filterPokemons.bind(this)}/> 
                     </CardContainer>
                 )
             }

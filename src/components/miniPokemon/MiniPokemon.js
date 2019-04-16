@@ -19,8 +19,8 @@
 // --------------------------------------
     const MiniPokemon = (props) => {
         const {pokemon, onPokemonClick} = props;
-        const {name, url} = pokemon;
-        const pokemonIndex = url.split('/')[url.split('/').length-2];
+        const {name, url, id} = pokemon;
+        const pokemonIndex = id || url.split('/')[url.split('/').length-2];
         return (
             <div className = "px-column px-miniPokemonContainer " id = {name}  onClick = {onPokemonClick}>
 

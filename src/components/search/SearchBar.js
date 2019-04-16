@@ -25,8 +25,10 @@ class SearchBar extends Component {
             super(props);
             this.state = {
                 isLoaded: false,
+                searchText : '',
             }
         }
+
         // --------------------------------------
         // Set Initial Values
         // --------------------------------------
@@ -35,20 +37,57 @@ class SearchBar extends Component {
 
 
     /* ==========================================================================
+    ** Handle State
+    ** ========================================================================== */
+
+        // --------------------------------------
+        // Update State with User Input
+        // --------------------------------------
+        onChangeInput = (event)=> {
+            const {target} = event;
+            const {value, name} = target;
+
+            this.setState({
+                [name] : value
+            })
+        }
+
+
+        // --------------------------------------
+        // Submit Form
+        // send Input To HomeView to Update State
+        // --------------------------------------
+        onFormSubmit = (event) => {
+            event.preventDefault();
+            const {searchText} = this.state;
+            this.props.searchPokemon(searchText)
+        }
+
+    /* ==========================================================================
     ** Render Methods
     ** ========================================================================== */
         // --------------------------------------
         // Render Projects
         // --------------------------------------
         renderSearchBar() {
+            const {searchText} = this.state;
+            
             return (
                 <Fragment>
 
-                    <form className="px-searchContainer">
+                    <form className="px-searchContainer" onSubmit = {this.onFormSubmit}>
                         <img className="px-searchIcon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png" alt = "search"/>
-                        <input type="text" id="px-searchBar" placeholder="Search Pokemon"/>
+                        <input 
+                            type="text" 
+                            id="px-searchBar" 
+                            placeholder="Search Pokemon by Name or ID" 
+                            value = {searchText} 
+                            name = 'searchText'
+                            onChange = {this.onChangeInput}/>
                         
                     </form>
+
+                    
                 </Fragment>
             )
         }
