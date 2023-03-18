@@ -9,9 +9,9 @@
 // Get Dependences
 // --------------------------------------
     import React, { Component, Fragment } from 'react';
-    import PokeballImage from '../../img/pokeball.png'
+    // import PokeballImage from '../../img/pokeball.png'
     import { LazyLoadImage } from 'react-lazy-load-image-component';
-    import {Pokeball} from '../index'
+    // import {Pokeball} from '../index'
     import 'react-lazy-load-image-component/src/effects/blur.css';
 
     

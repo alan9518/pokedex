@@ -9,15 +9,15 @@
 // Import Dependences
 // --------------------------------------
     import React  from "react";
-    import PropTypes from "prop-types";
+    // import PropTypes from "prop-types";
     
     import './styles.css';
 
 // --------------------------------------
 // Create Component
 // --------------------------------------    
-    const Apploader = (props) => {  
-        const {customHeight} = props;
+    const Apploader = () => {  
+        // const {customHeight} = props;
         return (
             <div className="px-wrapper">
                 <div className="px-pokeball"></div>
@@ -29,16 +29,16 @@
     // --------------------------------------
     // Props types
     // --------------------------------------  
-    Apploader.propTypes = {
-        customHeight : PropTypes.number
-    }
+    // Apploader.propTypes = {
+    //     customHeight : PropTypes.number
+    // }
     
     // --------------------------------------
     // Default Props
     // --------------------------------------  
-    Apploader.defaultProps = {
-        customHeight : 800
-    }
+    // Apploader.defaultProps = {
+    //     customHeight : 800
+    // }
 
 
 // --------------------------------------

@@ -9,7 +9,7 @@
 // --------------------------------------
     import React from 'react';
     import PokeballImage from '../../img/pokeball.png'
-    import PropTypes from 'prop-types';
+    // import PropTypes from 'prop-types';
     import './styles.css';
 
 

@@ -15,7 +15,7 @@
     import {GridView,DetailsView } from '../../views';
     import {Endpoints} from '../../settings/Endpoints';
     import axios from 'axios';
-    import PropTypes from 'prop-types';
+    // import PropTypes from 'prop-types';
     
 
 // --------------------------------------
